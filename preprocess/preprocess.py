@@ -59,8 +59,15 @@ def preprocessing(text):
             new_words.append(lemmatizer.lemmatize(new_word))
     return new_words
 
+def findRetweetAcount(tokenized_text):
+    # find the first MENTION_PATTERN
+    for word in tokenized_text:
+        if (re.match(MENTION_PATTERN, word) != None):
+            return word
+    return 'None'
+
 if __name__ == '__main__':
-    with open('trumptwitterarchive.txt', 'r') as data_file:
+    with open('../data/trumptwitterarchive.txt', 'r') as data_file:
         json_data = data_file.read()
 
     data = json.loads(json_data)
@@ -70,7 +77,13 @@ if __name__ == '__main__':
         processed_text = preprocessing(twitter['text'])
         twitter['tokenized_text'] = tokenized_text
         twitter['processed_text'] = processed_text
+        if len(processed_text) > 0 and processed_text[0] == 'rt':
+            twitter['is_retweet'] = True
+            twitter['retweet_account'] = findRetweetAcount(tokenized_text)
+        else:
+            twitter['is_retweet'] = False
+            twitter['retweet_account'] = 'None'
 
-    with open('processed_trumptwitterarchive.txt', 'w') as outfile:
+    with open('../data/processed_trumptwitterarchive.txt', 'w') as outfile:
         json.dump(data, outfile)
 

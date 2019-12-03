@@ -1,0 +1,9 @@
+theme: jekyll-theme-primer
+title: Alzheimer's Project
+description: Alzheimer's Project for AC 209a
+baseurl:
+markdown: kramdown
+kramdown:
+    math_engine: mathjax
+    input: GFM
+    syntax_highlighter: rouge

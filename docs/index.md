@@ -1,3 +1,5 @@
+[eda](eda.md)
+
 ---
 title: Introduction
 ---

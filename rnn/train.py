@@ -1,165 +1,112 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@fdjingyuan 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
-
-1
-2713claravania/lstm-pytorch
- Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights
-lstm-pytorch/train.py / 
-@domantasjurkus domantasjurkus Update train.py
-e3290bb on Nov 21, 2018
-@domantasjurkus@claravania
-137 lines (109 sloc)  4.83 KB
-  
-Code navigation is available!
-Navigate your code with ease. Click on function and method calls to jump to their definitions or references in the same repository. Learn more
-
-You're using code navigation to jump to definitions or references.
-Learn more or give us feedback
-import os
-import sys
-import argparse
-import time
-import random
-import utils
-import pdb
-
+from rnn.dataset import Dictionary, MyDataset
+from rnn.model import LSTMClassifier
 import torch
-import torch.autograd as autograd
-import torch.nn as nn
-import torch.functional as F
-import torch.optim as optim
+import torch.utils.data
+from torch import nn
+import numpy as np
+from torch.nn import functional as F
+from rnn import const
+from rnn.utils import parse_args_and_merge_const
+from tensorboardX import SummaryWriter
+import time
+import os
+import pandas as pd
+import random
 
-from torch.utils.data import Dataset, DataLoader
-from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-from data import PaddedTensorDataset
-from data import TextLoader
-from model import LSTMClassifier
-
-
-def main():
-	parser = argparse.ArgumentParser()
-	parser.add_argument('--data_dir', type=str, default='toy_data/names',
-											help='data_directory')
-	parser.add_argument('--hidden_dim', type=int, default=32,
-											help='LSTM hidden dimensions')
-	parser.add_argument('--batch_size', type=int, default=32,
-											help='size for each minibatch')
-	parser.add_argument('--num_epochs', type=int, default=5,
-											help='maximum number of epochs')
-	parser.add_argument('--char_dim', type=int, default=128,
-											help='character embedding dimensions')
-	parser.add_argument('--learning_rate', type=float, default=0.01,
-											help='initial learning rate')
-	parser.add_argument('--weight_decay', type=float, default=1e-4,
-											help='weight_decay rate')
-	parser.add_argument('--seed', type=int, default=123,
-											help='seed for random initialisation')
-	args = parser.parse_args()
-	train(args)
-
-
-def apply(model, criterion, batch, targets, lengths):
-    pred = model(torch.autograd.Variable(batch), lengths.cpu().numpy())
-    loss = criterion(pred, torch.autograd.Variable(targets))
-    return pred, loss
-
-
-def train_model(model, optimizer, train, dev, x_to_ix, y_to_ix, batch_size, max_epochs):
-    criterion = nn.NLLLoss(size_average=False)
-    for epoch in range(max_epochs):
-        print('Epoch:', epoch)
-        y_true = list()
-        y_pred = list()
-        total_loss = 0
-        for batch, targets, lengths, raw_data in utils.create_dataset(train, x_to_ix, y_to_ix, batch_size=batch_size):
-            batch, targets, lengths = utils.sort_batch(batch, targets, lengths)
-            model.zero_grad()
-            pred, loss = apply(model, criterion, batch, targets, lengths)
-            loss.backward()
-            optimizer.step()
-            
-            pred_idx = torch.max(pred, 1)[1]
-            y_true += list(targets.int())
-            y_pred += list(pred_idx.data.int())
-            total_loss += loss
-        acc = accuracy_score(y_true, y_pred)
-        val_loss, val_acc = evaluate_validation_set(model, dev, x_to_ix, y_to_ix, criterion)
-        print("Train loss: {} - acc: {} \nValidation loss: {} - acc: {}".format(total_loss.data.float()/len(train), acc,
-                                                                                val_loss, val_acc))
-    return model
-
-
-def evaluate_validation_set(model, devset, x_to_ix, y_to_ix, criterion):
-    y_true = list()
-    y_pred = list()
-    total_loss = 0
-    for batch, targets, lengths, raw_data in utils.create_dataset(devset, x_to_ix, y_to_ix, batch_size=1):
-        batch, targets, lengths = utils.sort_batch(batch, targets, lengths)
-        pred, loss = apply(model, criterion, batch, targets, lengths)
-        pred_idx = torch.max(pred, 1)[1]
-        y_true += list(targets.int())
-        y_pred += list(pred_idx.data.int())
-        total_loss += loss
-    acc = accuracy_score(y_true, y_pred)
-    return total_loss.data.float()/len(devset), acc
-
-
-def evaluate_test_set(model, test, x_to_ix, y_to_ix):
-    y_true = list()
-    y_pred = list()
-
-    for batch, targets, lengths, raw_data in utils.create_dataset(test, x_to_ix, y_to_ix, batch_size=1):
-        batch, targets, lengths = utils.sort_batch(batch, targets, lengths)
-
-        pred = model(torch.autograd.Variable(batch), lengths.cpu().numpy())
-        pred_idx = torch.max(pred, 1)[1]
-        y_true += list(targets.int())
-        y_pred += list(pred_idx.data.int())
-
-    print(len(y_true), len(y_pred))
-    print(classification_report(y_true, y_pred))
-    print(confusion_matrix(y_true, y_pred))
-
-
-def train(args):
-
-	random.seed(args.seed)
-	data_loader = TextLoader(args.data_dir)
-
-	train_data = data_loader.train_data
-	dev_data = data_loader.dev_data
-	test_data = data_loader.test_data
-
-	char_vocab = data_loader.token2id
-	tag_vocab = data_loader.tag2id
-	char_vocab_size = len(char_vocab)
-
-	print('Training samples:', len(train_data))
-	print('Valid samples:', len(dev_data))
-	print('Test samples:', len(test_data))
-
-	print(char_vocab)
-	print(tag_vocab)
-
-	model = LSTMClassifier(char_vocab_size, args.char_dim, args.hidden_dim, len(tag_vocab))
-	optimizer = optim.SGD(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
-
-	model = train_model(model, optimizer, train_data, dev_data, char_vocab, tag_vocab, args.batch_size, args.num_epochs)
-
-	evaluate_test_set(model, test_data, char_vocab, tag_vocab)
+def evaluate(net, step, writer, val_dataloader):
+    print('Now Evaluate...')
+    with torch.no_grad():
+        net.eval()
+        correct = 0
+        total = 0
+        for i, sample in enumerate(val_dataloader):
+            for key in sample:
+                if isinstance(sample[key], torch.Tensor):
+                    sample[key] = sample[key].to(const.device)
+            output = net(sample)
+            _, predicted = torch.max(output["logit"], 1)
+            total += sample['label'].size(0)
+            correct += (predicted == sample['label']).sum().item()
+        print('Test Accuracy: {:.2f}%'.format(100 * correct / total))
+        writer.add_scalar('accuracy', correct / total, step)
+        net.train()
 
 
 if __name__ == '__main__':
-	main()
+    args = parse_args_and_merge_const()
+    print('train_dir is: {}'.format(const.TRAIN_DIR))
+    if not(os.path.exists(const.TRAIN_DIR)):
+        os.makedirs(const.TRAIN_DIR)
 
+    # Load dataset, transform word to id
+    all_samples = pd.read_csv('./data/lstm.cvs').to_dict('records')
+    all_text = []
+    for sample in all_samples:
+        if isinstance(sample['texts'], str):
+            sample['processed_text'] = sample['texts'].split(' ')
+        else:
+            # special treat for empty tweets
+            sample['processed_text'] = ['null']
+        all_text.extend(sample['processed_text'])
+    dictionary = Dictionary(all_text, max_vocab_size=const.MAX_VOCAB_SIZE)
+    if const.USE_PRETRAINED_EMBEDDING is True:
+        pretrained_embeddings = dictionary.word_embeddings()
+    else:
+        pretrained_embeddings = None
+
+    for idx, sample in enumerate(all_samples):
+        sample['processed_id'] = [dictionary.to_idx(word) for word in sample['processed_text']]
+
+    # train & test split
+    random.shuffle(all_samples)
+    train_samples = all_samples[:int(len(all_samples) * 0.8)]
+    val_samples = all_samples[int(len(all_samples) * 0.8):]
+
+    train_dataset = MyDataset(train_samples, dictionary.to_idx('_unk'), const.MAX_SAMPLE_LENGTH)
+    val_dataset = MyDataset(val_samples, dictionary.to_idx('_unk'), const.MAX_SAMPLE_LENGTH)
+    train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=const.BATCH_SIZE, shuffle=True, num_workers=4)
+    val_dataloader = torch.utils.data.DataLoader(val_dataset, batch_size=const.VAL_BATCH_SIZE, shuffle=False, num_workers=4)
+
+    net = LSTMClassifier(const.MAX_VOCAB_SIZE, const.EMBED_DIM, const.HIDDEN_DIM, const.DROPOUT_RATE,
+                  const.NUM_LAYERS, const.RNN_TYPE, pretrained_embeddings=pretrained_embeddings)
+    net = net.to(const.device)
+
+    learning_rate = const.LEARNING_RATE
+    optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)
+
+    writer = SummaryWriter(const.TRAIN_DIR)
+
+    total_step = len(train_dataloader)
+    step = 0
+    for epoch in range(const.NUM_EPOCH):
+        net.train()
+        for i, sample in enumerate(train_dataloader):
+            step += 1
+            for key in sample:
+                if isinstance(sample[key], torch.Tensor):
+                    sample[key] = sample[key].to(const.device)
+            output = net(sample)
+            loss = net.cal_loss(sample, output)
+
+            optimizer.zero_grad()
+            loss['all'].backward()
+            optimizer.step()
+            if (i + 1) % 10 == 0:
+                writer.add_scalar('lr/lr', learning_rate, step)
+                writer.add_scalar('loss/all', loss['all'].item(), step)
+                print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'
+                      .format(epoch + 1, const.NUM_EPOCH, i + 1, total_step, loss['all'].item()))
+        # learning rate decay
+        if hasattr(const, "LEARNING_RATE_DECAY_EVERY_EPOCHS"):
+            if (epoch + 1) % const.LEARNING_RATE_DECAY_EVERY_EPOCHS == 0:
+                learning_rate *= const.LEARNING_RATE_DECAY
+        else:
+            learning_rate *= const.LEARNING_RATE_DECAY
+        optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)
+        # Save
+        if hasattr(const, "SAVE_EVERY_EPOCHS") and (epoch + 1) % const.SAVE_EVERY_EPOCHS == 0:
+            print('Saving Model....')
+            torch.save(net.state_dict(), os.path.join(folder_name, 'model.pt-epoch{}'.format(epoch + 1)))
+            print('OK.')
+        if hasattr(const, "VAL_EVERY_EPOCHS") and (epoch + 1) % const.VAL_EVERY_EPOCHS == 0:
+            evaluate(net, step, writer, val_dataloader)

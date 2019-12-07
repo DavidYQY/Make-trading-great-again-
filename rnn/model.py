@@ -9,41 +9,67 @@ from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
 class LSTMClassifier(nn.Module):
 
-	def __init__(self, vocab_size, embedding_dim, hidden_dim, output_size):
+    def __init__(self, max_vocab_size, embed_dim, hidden_dim,
+                 dropout_rate=0.5, num_layers=1, rnn_type='LSTM', pretrained_embeddings=None, concat_feature=False):
+        super(LSTMClassifier, self).__init__()
+        self.embedding = nn.Embedding(max_vocab_size, embed_dim)
+        self.rnn_type = rnn_type
+        if rnn_type in ['LSTM', 'GRU']:
+            self.rnn = getattr(nn, rnn_type)(embed_dim, hidden_dim, num_layers, dropout=dropout_rate)
+        else:
+            try:
+                nonlinearity = {'RNN_TANH': 'tanh', 'RNN_RELU': 'relu'}[rnn_type]
+            except KeyError:
+                raise ValueError("""An invalid option for `--model` was supplied,
+                                 options are ['LSTM', 'GRU', 'RNN_TANH' or 'RNN_RELU']""")
+            self.rnn = nn.RNN(embed_dim, hidden_dim, num_layers, nonlinearity=nonlinearity, dropout=dropout)
+        self.output_dropout = nn.Dropout(dropout_rate)
+        # 2-classes classification
+        if concat_feature is False:
+            self.hidden2out = nn.Linear(hidden_dim, 2)
+        else:
+            self.hidden2out = nn.Linear(hidden_dim + 2, 2)
+        self.concat_feature = concat_feature
 
-		super(LSTMClassifier, self).__init__()
+        if pretrained_embeddings is not None:
+            self.embedding.weight.data.copy_(torch.from_numpy(pretrained_embeddings))
+        self.cross_entropy_loss = nn.CrossEntropyLoss()
 
-		self.embedding_dim = embedding_dim
-		self.hidden_dim = hidden_dim
-		self.vocab_size = vocab_size
+    def forward(self, sample):
+        '''
+        Input: sample
+            key: word_id, retweet_count, favorite_count, text_length, label
+        Output: output
+            key: logit
+        '''
+        # batch_size x length x embedding_size
+        embeds = self.embedding(sample['word_id'])
+        packed_input = pack_padded_sequence(embeds, sample['length'], batch_first=True, enforce_sorted=False)
+        output, hidden = self.rnn(packed_input)
 
-		self.embedding = nn.Embedding(vocab_size, embedding_dim)
-		self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=1)
+        if self.rnn_type == 'LSTM':
+            hidden = hidden[0][-1]
+        else:
+            hidden = hidden[-1]
+        
+        if self.concat_feature:
+            hidden = torch.cat(
+                [
+                    hidden,
+                    sample['retweet_count'].reshape(hidden.shape[0], 1),
+                    sample['favorite_count'].reshape(hidden.shape[0], 1),
+                ],
+                dim=1
+            )
 
-		self.hidden2out = nn.Linear(hidden_dim, output_size)
-		self.softmax = nn.LogSoftmax()
-
-		self.dropout_layer = nn.Dropout(p=0.2)
-
-
-	def init_hidden(self, batch_size):
-		return(autograd.Variable(torch.randn(1, batch_size, self.hidden_dim)),
-						autograd.Variable(torch.randn(1, batch_size, self.hidden_dim)))
-
-
-	def forward(self, batch, lengths):
-		
-		self.hidden = self.init_hidden(batch.size(-1))
-
-		embeds = self.embedding(batch)
-		packed_input = pack_padded_sequence(embeds, lengths)
-		outputs, (ht, ct) = self.lstm(packed_input, self.hidden)
-
-		# ht is the last hidden state of the sequences
-		# ht = (1 x batch_size x hidden_dim)
-		# ht[-1] = (batch_size x hidden_dim)
-		output = self.dropout_layer(ht[-1])
-		output = self.hidden2out(output)
-		output = self.softmax(output)
-
-		return output
+        output = self.output_dropout(hidden)
+        output = self.hidden2out(output)
+        output = {'logit': output}
+        return output
+    
+    def cal_loss(self, sample, output):
+        '''
+        Input: sample, output
+        Output: loss (scalar)
+        '''
+        return {'all': self.cross_entropy_loss(output['logit'], sample['label'])}

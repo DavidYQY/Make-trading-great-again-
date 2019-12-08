@@ -1,4 +1,3 @@
-
 ---
 title: Exploratory Data Analysis
 nav_include: 1
@@ -13,7 +12,7 @@ nav_include: 1
 
 Since we are interested in whether we can use Trump tweets to predict stock market movements (in our baseline model, up or down) in the ﬁrst 5 minutes after each tweet, we specifically look at the up and down percentage within any non-overlapping 5-minute intervals across all data. The result is shown below. Given this, we have a pretty balanced sample, and no need to worry about our classiﬁer predicting only one class.
 
-
+<center>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
@@ -34,6 +33,7 @@ Since we are interested in whether we can use Trump tweets to predict stock mark
     <td class="tg-0pky">48.74%</td>
   </tr>
 </table>
+</center>
 
 ## Trump Data Analysis
 
@@ -53,10 +53,12 @@ As we can see in the ﬁgure, Trump’s tweets did not have strong impact on Twi
 From the ﬁgure above, we know that Donald is surprisingly active on Twitter at almost any hour of the day. Most of Trump’s tweets are sent during 11:00 AM to 2:00 PM, and the number of tweets at 12:00 PM - 1:00 PM is about three times that of other times. Also, Trump’s activity has increased substantially through 2019. A curious observation is that Trump is also very active at 3:00 AM. Additionally, an interesting ﬁnding is that 5:00-9:00 AM seems to be his sleeping time since there is rarely any tweet posted during that period.
 
 <p align="center">
-<img src="pic/eda/activity_freq.jpeg" alt="drawing" width="200"/>
+<img src="pic/eda/activity_freq.jpeg" alt="drawing" width="1000"/>
 </p>
 
-![activity over year](pic/eda/twitter_freq_over_year.jpeg)
+<p align="center">
+<img src="pic/eda/twitter_freq_over_year.jpeg" alt="drawing" width="1000"/>
+</p>
 
 ### Interaction Analysis
 
@@ -90,7 +92,9 @@ For the package-based approach, we use the the package [textblob](https://textbl
 
 We construct a confusion matrix for the given sentiment output with two approaches to see their difference.
 
+<p align="center">
 ![Comparison between naive and package solution](pic/sentiment/cm.png)
+</p>
 
 We can see that the two approaches are highly correlated. In the following parts we just explore the features based on the naive approach.
 

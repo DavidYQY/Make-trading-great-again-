@@ -1,3 +1,6 @@
+#google embedding big file
+rnn/GoogleNews-vectors-negative300.bin
+*GoogleNews-vectors-negative300.bin
 # Mac DS_Store
 .DS_Store
 

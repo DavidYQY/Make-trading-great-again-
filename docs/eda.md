@@ -1,3 +1,4 @@
+
 ---
 title: Exploratory Data Analysis
 nav_include: 1
@@ -51,9 +52,11 @@ As we can see in the ﬁgure, Trump’s tweets did not have strong impact on Twi
 
 From the ﬁgure above, we know that Donald is surprisingly active on Twitter at almost any hour of the day. Most of Trump’s tweets are sent during 11:00 AM to 2:00 PM, and the number of tweets at 12:00 PM - 1:00 PM is about three times that of other times. Also, Trump’s activity has increased substantially through 2019. A curious observation is that Trump is also very active at 3:00 AM. Additionally, an interesting ﬁnding is that 5:00-9:00 AM seems to be his sleeping time since there is rarely any tweet posted during that period.
 
-![activity over day](pic/eda/activity_freq.jpeg)
+<p align="center">
+<img src="pic/eda/activity_freq.jpeg" alt="drawing" width="200"/>
+</p>
 
-![activity over year](pic/edatwitter_freq_over_year.jpeg)
+![activity over year](pic/eda/twitter_freq_over_year.jpeg)
 
 ### Interaction Analysis
 
@@ -61,7 +64,7 @@ From EDA we know that 7.5% of Trump’s tweet are from retweet, which shows that
 
 ![Top 20 Users Trump likes to retweet](pic/eda/retweet.jpeg)
 
-![ Top 20 Users Trump likes to mention](pic/eda/mention.jpeg)
+![Top 20 Users Trump likes to mention](pic/eda/mention.jpeg)
 
 ### Sentiment Analysis
 

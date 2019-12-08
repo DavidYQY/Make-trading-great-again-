@@ -1,7 +1,6 @@
 
 ---
 title: Introduction
-nav_include: 0
 ---
 
 ### Team 41: Rock Zhou, Jingyuan Liu, Yaoyang Lin, Qiuyang Yin

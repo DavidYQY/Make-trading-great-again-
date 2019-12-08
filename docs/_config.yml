@@ -1,1 +1,9 @@
-theme: jekyll-theme-cayman
+theme: jekyll-theme-primer
+title: Make Trading Great Again：）
+description: Group 68 Final project for CS109
+baseurl:
+markdown: kramdown
+kramdown:
+    math_engine: mathjax
+    input: GFM
+    syntax_highlighter: rouge

@@ -1,4 +1,3 @@
-
 ---
 title: Exploratory Data Analysis
 nav_include: 1

@@ -12,24 +12,18 @@ nav_include: 1
 
 Since we are interested in whether we can use Trump tweets to predict stock market movements (in our baseline model, up or down) in the ﬁrst 5 minutes after each tweet, we specifically look at the up and down percentage within any non-overlapping 5-minute intervals across all data. The result is shown below. Given this, we have a pretty balanced sample, and no need to worry about our classiﬁer predicting only one class.
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
-<table class="tg",align="center">
+<table border="1" style="margin: 0px auto;">
   <tr>
-    <th class="tg-0pky">Directions</th>
-    <th class="tg-0pky">Percentage</th>
+    <th>Directions</th>
+    <th>Percentage</th>
   </tr>
   <tr>
-    <td class="tg-0pky">Up</td>
-    <td class="tg-0pky">51.26%</td>
+    <td>Up</td>
+    <td>51.26%</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Down</td>
-    <td class="tg-0pky">48.74%</td>
+    <td>Down</td>
+    <td>48.74%</td>
   </tr>
 </table>
 
@@ -116,52 +110,3 @@ Lastly we want to see if the sentiment of tweets affects the favorite counts and
 
 We can tell from figure above that the neutral tweets have the least amount of retweets and favorites, while the negative ones have the most, which makes sense since people tend to comment and watch more controversial topics rather then the milder ones.
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>DX</th>
-      <th>End CN</th>
-      <th>End MCI</th>
-      <th>End AD</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Start CN</td>
-      <td>555.0</td>
-      <td>48.0</td>
-      <td>12.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Start MCI</td>
-      <td>39.0</td>
-      <td>578.0</td>
-      <td>156.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Start AD</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>259.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>

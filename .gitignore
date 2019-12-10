@@ -1,6 +1,10 @@
 #google embedding big file
 rnn/GoogleNews-vectors-negative300.bin
 *GoogleNews-vectors-negative300.bin
+
+#trained_models
+rnn/models/*
+
 # Mac DS_Store
 .DS_Store
 

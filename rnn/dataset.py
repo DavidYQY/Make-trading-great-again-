@@ -59,7 +59,7 @@ class Dictionary(object):
         with open(save_path, 'wb') as f:
             pickle.dump(self, f)
     
-    def word_embeddings(self, path='./GoogleNews-vectors-negative300.bin/GoogleNews-vectors-negative300.bin'):
+    def word_embeddings(self, path='./rnn/GoogleNews-vectors-negative300.bin/GoogleNews-vectors-negative300.bin'):
         print('Please wait ... (it could take a while to load the file : {})'.format(path))
         model = gensim.models.KeyedVectors.load_word2vec_format(path, binary=True)
 

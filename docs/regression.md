@@ -1,6 +1,6 @@
 ---
-title: Long Short-Term Memory
-nav_include: 2
+title: Regression
+nav_include: 4
 ---
 
 ## Contents
@@ -10,36 +10,33 @@ nav_include: 2
 
 ## Introduction 
 
-Automatic text classification can be done in many different ways in machine learning as we have discussed and showed before. We also explore the task using deep learning models.
+Now let us venture into the territory of actually predicting the S&P 500 Index returns after each tweet.
 
-### Recurrent Neural Networks
-Recurrent Neural Networks (RNN) are good at modeling sequence data, achieving excellent performance in Natural Language Processing field. When humans read sentences, they understand each word based on the understanding of previous words. Traditional neural networks can not handle this but RNN breaks through the limitation.  
+First, the returns are defined as $$(P_b-P_a)/P_a$$, where $P_a$ is the nearest pre-tweet price (up to one minute, which is the granularity of our data), and $P_b$ is the price $m$ minutes after $P_a.$ The distribution of *training set* returns is shown in Figure 1 below, with $m$ equal to 5. Since the returns are typically *very* small in decimals, we instead quote them in *basis points (bps)*, where each basis point is 1/100 of 1%. For example, 10bps is 0.1% change in S&P 500 Index.  
+<p align="center">
+<img src="pic/regression/returns_hist.png" width="700"/> </p>
+<center>Figure 1: S&P 500 Index 5-min-post-tweet Returns Histogram</center>
 
-In the diagram, a chunk of neural network, $h_{t}$, takes input $x_{t}$ and outputs a value $o_{t}$. A loop allows information to be passed from one step of the network to the next. Actually, $o_{1}, o_{2}, ..., o_{\tau}$ are the output of hidden layers and we will get the final output label from the last hidden layer. 
+We also need to recognize that it is very easy to data snoop, and thus extreme care is needed. For example, our data [source](http://www.trumptwitterarchive.com) documents that even though tweets are collected "[every 1 minute](http://www.trumptwitterarchive.com/about)", [ "favorite counts and retweet counts" are continuously updated until they fall out of the the most recent 100 tweets](https://github.com/bpb27/trump_tweet_data_archive). This means that the data we get for these two features are the count a few *days* after that tweet was out. This implies that they cannot be used to predict stock market movement *minutes* after the tweet. Another way to think about this is that the tens of thousands of retweet/favorite counts in our data set are almost entirely realizations *after* our stock movement realizations! Similar reasons apply to comments (and any feature derived thereof), and hence are excluded in our model.
 
-![RNN](pic/lstm/rnn.png)
-<center>Fig 1: A clasical RNN structure </center>
+To conclude, the final model included the sensitiment analysis result (posive and negative word counts in each tweet), as well as the 20 key-word (one-hot encoded).
 
-### Long Short-Term Memory
-RNN often suffers from the situation when the gap between the relevant information and the needed point is really large. That means RNN is not capable of handling such “long-term dependencies”.
+## Modeling
 
-Long Short Term Memory network (LSTM) is a special kind of RNN, which has the competence to learn long-term dependencies. 
+### Preliminaries
 
-All RNNs have the form of a chain of repeating modules ($h$ in Fig 1) of neural network. In standard RNNs, thie module is simple with a single tanh layer.
+The first step in modeling is to figure out the $m$ that our model performs the best. We ran basic Linear Regression, Lasso regression, and Random Forest Regressor on the training set with $m$ from 1 minute up to 60 minutes. The test set MSE result is shown below in Figure 2. 
 
-LSTM has four layters, interacting in a special way as showing in Fig 2. The key idea is the cell state (the horizontal line going through the top of the module). It will remove or add information to the cell state, regulated by gate structuress.
 
-![](pic/lstm/LSTM.png)
-<center>Fig 2: The repeating module in an LSTM </center>
-- First, a sigmoid layer called the “forget gate layer” decide what information to throw away from the cell state. 
-- Second, lstm decides what new information to store in the cell state. A sigmoid layer called the “input gate layer” decides which values to update. A tanh layer creates a vector of new candidate values, that could be added to the state.
-- Third, update the old cell state $C_{t−1}$ to new state $C_{t}$. Lstm multiply the old state by $f_{t}$ (forgetting the things) and we add $i_{t} * \tilde{C}_{t}$ (the new candidate values).
-- Finally, decide what to output combining with sigmoid and tanh.
+<p align="center">
+<img src="pic/regression/test_set_mse.png" width="700"/> </p>
+<center>Figure 2: MSE of Predicting Returns with Different Time Intervals </center>
 
-## Model Implementation 
+Seemingly contradictory results from predicting Up or Down in the previous section, where as $m$ increases the prediction accuracy tend to increase. But this actually makes sense in that as more time elapses after each tweet, the returns should have higher standard deviations (think of a random walk model), and thus leading to higher MSE in our regression prediction. At the same time, more and more people interpret the tweet and react (hopefully) in the *direction* of what our model predicts, and hence leading to higher prediction *accuracy* in general as $m$ increases.
 
-## Experiment Result
+For a more realistic set up, instead of predicting 1-minute ahead return, we choose $m = 5$ to take into account of potential human intervention before trade execution.
 
-### Comparison
+Next, 
 
-### Ablation study
+### Key Model Results
+

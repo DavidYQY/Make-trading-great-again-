@@ -37,6 +37,6 @@ _name = 'vocab-{}-pretrained-{}-concat-{}-length-{}-emb-{}-hidden-{}-dropout-{:.
 )
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-TRAIN_DIR = 'rnn/models/15/%s/' % _name
+TRAIN_DIR = 'rnn/models/30/%s/' % _name
 MODEL_NAME = '%s' % _name
 #############

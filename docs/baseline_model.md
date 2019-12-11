@@ -1,6 +1,6 @@
 ---
-title: Baseline model : Classification
-nav_include: 4
+title: Baseline model
+nav_include: 5
 ---
 
 ## Contents

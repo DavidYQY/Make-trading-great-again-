@@ -42,21 +42,28 @@ LSTM has four layters, interacting in a special way as showing in Fig 2. The key
 
 We use Pytorch to establish our LSTM model and use tensorboard to visualize our training process. 
 
-The input of lstm model should be a sequence of numerical data. So we should map words to vectors and padding each tweet to same length.
+The input of lstm model should be a sequence of numerical data. So we should map words to vectors and pad each tweet to same length.
 ### Word embedding
-Word embedding is computing vector representations of words. An pre-trained Google News corpus (3 billion running words) word vector model (3 million 300-dimension English word vectors) was used as our initial vector representation of the word in tweets. These vector weights will also be update at the following training process. We follow the setting of 300 embedding dimension that Google News choosed.
+Word embedding is to compute vector representations of words. To better build our model, a pre-trained Google News corpus (3 billion running words) word vector model (3 million 300-dimension English word vectors) was used as our initial vector representation of the word in tweets. These vector weights will also be update at the following training process. We follow the setting of 300 embedding dimension that Google News choosed.
 
 ![word2vec](pic/lstm/word2vec.png)
 <center>Fig 3. word to vector using Google News model.
 </center>
 
 ### Sentence padding
-Different tweets have different length. In this situation, we should pad short sentences to the longest sentences or set a hyper-parameter as the max sample length. 
-TODO:
+Different tweets have different length. Thus, we should pad short sentences to the longest sentences. Or a more reasonable way is to set a hyper-parameter as the max sample length, which reduces the modeling complexity. When the sentence is shorter than max length, we pad it. When the sentence is longer than max length, we throw the exceed part. However, this causes a problem. For example, in the figure below, the sentence "Yes" only has one word, but padding it to length 5 will cause the representation of LSTM includes a lot of useless padding characters. So the sentence representation will have mistakes. The right way to do it is only get the representation of LSTM after word 'yes' as marked with a red check mark, not after several unmeaningful 'pad' word.
+
 <p align="center">
 <img src="pic/lstm/padding.png" width="600"/> 
 </p>
 <center>Fig.4  </center>
+
+### LSTM structure
+
+<p align="center">
+<img src="pic/lstm/model.png" width="600"/> 
+</p>
+<center>Fig.5  </center>
 
 ### Important Hyper-parameter
 
@@ -64,7 +71,20 @@ TODO:
 
 |  Name   | Setting | Explain |
 |  ----  | ----  | ---- |
-| vocab | 10,000 | Trump has used more than 20,000 words. When map word to id in dictionary, we select the top k frequency word he used by NLTK|
+| MAX_VOCAB_SIZE | 10,000 | Trump has used more than 20,000 words. When map word to id in dictionary, we select the top k frequency word he used by NLTK|
+| USE_PRETRAINED_EMBEDDING | | |
+| CONCAT_RETWEET_AND_FAV | | |
+| MAX_SAMPLE_LENGTH | | |
+| EMBED_DIM | | |
+| HIDDEN_DIM | | |
+| DROPOUT_RATE | | |
+| NUM_LAYERS | | |
+| NUM_EPOCH | | |
+| LEARNING_RATE | | |
+| LEARNING_RATE_DECAY| | |
+
+
+
 <center>Tab.1  </center>
 
 
@@ -73,44 +93,44 @@ TODO:
 ### Ablation study
 
 ![acc-1](pic/lstm/accuracy-1.png)
-<center>Fig.5  </center>
+<center>Fig.6  </center>
 TODO:
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-cly1{text-align:left;vertical-align:middle}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-nrix{text-align:center;vertical-align:middle}
-.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-cly1"></th>
-    <th class="tg-cly1">Concat features True</th>
-    <th class="tg-cly1">Concat features False</th>
+    <th class="tg-lboi"></th>
+    <th class="tg-lboi"><span style="font-weight:bold">Concat features True</span></th>
+    <th class="tg-lboi"><span style="font-weight:bold">Concat features False</span></th>
   </tr>
   <tr>
-    <td class="tg-cly1">Pre-trained True</td>
-    <td class="tg-nrix">52.95%</td>
-    <td class="tg-nrix">52.63%</td>
+    <td class="tg-lboi"><span style="font-weight:bold">Pre-trained True</span></td>
+    <td class="tg-9wq8">52.95%</td>
+    <td class="tg-9wq8">52.63%</td>
   </tr>
   <tr>
-    <td class="tg-0lax">Pre-trained Flase</td>
-    <td class="tg-baqh">52.71%</td>
-    <td class="tg-baqh">51.38%</td>
+    <td class="tg-0pky"><span style="font-weight:bold">Pre-trained Flase</span></td>
+    <td class="tg-c3ow">52.71%</td>
+    <td class="tg-c3ow">51.38%</td>
   </tr>
 </table>
 <center>Tab.2  </center>
 ![loss-1](pic/lstm/loss-1.png)
-<center>Fig.6  </center>
+<center>Fig.7  </center>
 TODO:
 ### Comparison
 TODO:
 
 ![all](pic/lstm/all.png)
-<center>Fig.7  </center>
+<center>Fig.8  </center>
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}

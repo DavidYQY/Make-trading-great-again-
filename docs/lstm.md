@@ -56,63 +56,125 @@ Different tweets have different length. Thus, we should pad short sentences to t
 <p align="center">
 <img src="pic/lstm/padding.png" width="600"/> 
 </p>
-<center>Fig.4  </center>
+<center>Fig.4 Sentence padding and get the output in resonable position </center>
 
 ### LSTM structure
+Our main network stucture are as follows:
+First, we do word embedding to get the word representations and then fit them into LSTM units (as we mentioned in Introduction part). We add dropout to alleviate the overfit problem. To fully utilize the information of each tweet, we concatenate the retweet and favorite count as two additional features into the   output from LSTM layer (We compared the results with not concatenating additional features in Abalation study part). Last we use a linear layer to get the output as our predicted label.
 
+For loss function, we use cross entropy, which is common for classification problem:
+
+<center>$L = - \frac{1}{N} \sum y_{i} log(p(y_{i})) + (1-y_{i})log(1-p(y_{i})),$</center>
+
+where y is the label (1 for up and 0 for down) and p(y) is the predicted probability of the sample.
+ 
 <p align="center">
 <img src="pic/lstm/model.png" width="600"/> 
 </p>
-<center>Fig.5  </center>
+<center>Fig.5 Overall network structure </center>
 
 ### Important Hyper-parameter
 
-TODO:
+We have several hyper-parameters that may influence our training results. Based on experiences and experiments. We get the best parameters as follow:
 
 |  Name   | Setting | Explain |
 |  ----  | ----  | ---- |
-| MAX_VOCAB_SIZE | 10,000 | Trump has used more than 20,000 words. When map word to id in dictionary, we select the top k frequency word he used by NLTK|
-| USE_PRETRAINED_EMBEDDING | | |
-| CONCAT_RETWEET_AND_FAV | | |
-| MAX_SAMPLE_LENGTH | | |
-| EMBED_DIM | | |
-| HIDDEN_DIM | | |
-| DROPOUT_RATE | | |
-| NUM_LAYERS | | |
-| NUM_EPOCH | | |
-| LEARNING_RATE | | |
-| LEARNING_RATE_DECAY| | |
+| MAX_VOCAB_SIZE | 10,000 | Trump has used more than 20,000 words. When map word to id in dictionary, we select the top k frequency word he used|
+| USE_PRETRAINED_EMBEDDING | True | Use pre-trained embedding by Google News or not|
+| CONCAT_RETWEET_AND_FAV | True | Concatenate retweet and favorite count into LSTM output or not |
+| MAX_SAMPLE_LENGTH | 50 | The length to pad the tweet or crop the tweet|
+| EMBED_DIM | 300 | The dimension of word embedding. Set to 300 according to pre-trained Google News embedding |
+| HIDDEN_DIM | 128 | The dimension of hiden layer in LSTM |
+| DROPOUT_RATE | 0.5 | The rate of dropout and set according to empirical value|
+| NUM_LAYERS | 1 | The number of layers in LSTM. Set to 1 becasue our dataset is not large and we want to make the model not so complex |
+| NUM_EPOCH | 100 | The epoch we trained for the model. Most cases the model loss levels off when epcoh is 100 |
+| BATCH_SIZE | 256 | Large batch size makes the model converge quickly but may cause the model stuck into local minimum |
+| LEARNING_RATE | 0.0003 | Small learning rate makes the model converge slowly but large learning rate may misguide the model |
+| LEARNING_RATE_DECAY| decay 0.8 per 10 epochs | When the model become more close to global minimum, we should decay the learning rate |
 
-
-
-<center>Tab.1  </center>
+<center>Tab.1 Important parameters in the model  </center>
 
 
 ## Experiment Result
 
 ### Ablation study
 
+To justify our model, we do ablation study for whether using pre-trained embedding by Google News or not and whether concatenate retweet and favorite count into LSTM output or not. We use 5 minitue interval data and keep other parameters same with the best parameter. The test accuracy comparison are showing as below:
+
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-lboi"></th>
+    <th class="tg-lboi"><span style="font-weight:bold">Concat features True</span></th>
+    <th class="tg-lboi"><span style="font-weight:bold">Concat features False</span></th>
+  </tr>
+  <tr>
+    <td class="tg-lboi"><span style="font-weight:bold">Pre-trained True</span></td>
+    <td class="tg-9wq8">52.95%</td>
+    <td class="tg-9wq8">52.63%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky"><span style="font-weight:bold">Pre-trained Flase</span></td>
+    <td class="tg-c3ow">52.71%</td>
+    <td class="tg-c3ow">51.38%</td>
+  </tr>
+</table>
+Tab.2 Comparison of using pre-trained embeddings and concatenating features.
+
 ![acc-1](pic/lstm/accuracy-1.png)
-<center>Fig.6  </center>
-
-
-| | Concat Features True | Concat Features False |
-| ---- | ---- | ---- |
-| **Pre-trained True** | 52.95% | 52.63% |
-| **Pre-trained False** | 52.71% | 51.38% |
-<center>Tab.2  </center>
-
-
+<center>Fig.6 Test accuracy comparison with training step </center>
 ![loss-1](pic/lstm/loss-1.png)
-<center>Fig.7  </center>
-TODO:
-### Comparison
-TODO:
+<center>Fig.7 Loss comparison with training step </center>
+#### Result Analysis
+- **Using pre-trained embeddings and concatenating features is better.** We can see from the accuracy plot, the best result is both using pre-trained embeddings and concatenating retweet and favorite counts. This makes sense, because Google News vocabulory is close to Trump's tweets, which gives our model good initial weights for word embedding. And intuitively the retweet and favorite counts shows the influence of the tweets in some extent.
+- **Concatenating two features makes model not stable.** Seeing from the test accuracy plot, it fluctuate more violetly when concatenate two features in the early training process.
+- **Using pre-trained models makes model converge quickly.** Seeing from the loss plot, the loss goes down more quickly when using pre-trained embeddings.
+
+### Interval Comparison
+
+At first, we compare our model using 5 minute interval after the created time of the tweets. We also trained our model using 10, 15, 20, 30, 40 intervals to compare our model performance.
 
 ![all](pic/lstm/all.png)
-<center>Fig.8  </center>
 
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| **Time interval** | 5 min | 10 min | 15 min | 20 min | 30 min | 40 min |
-| **Test accuracy** | 52.95% | 53.82% | 53.31% | 55.28% | 50.92% | 53.22% |
-<center>Tab.3  </center>
+
+<center>Fig.8 Test accuracy and loss with training step for different time intervals </center>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky"><span style="font-weight:bold">Time interval</span></th>
+    <th class="tg-0pky">5 min</th>
+    <th class="tg-0pky">10 min</th>
+    <th class="tg-0pky">15 min</th>
+    <th class="tg-0pky">20 min</th>
+    <th class="tg-0pky">30 min</th>
+    <th class="tg-0pky">40 min</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky"><span style="font-weight:bold">Test accuracy</span></td>
+    <td class="tg-0pky">52.95%</td>
+    <td class="tg-0pky">53.82%</td>
+    <td class="tg-0pky">53.31%</td>
+    <td class="tg-0pky">55.28%</td>
+    <td class="tg-0pky">50.92%</td>
+    <td class="tg-0pky">53.22%</td>
+  </tr>
+</table>
+Tab.3 Test accuracy with step for different time intervals.
+
+The loss trends of different intervals seem very similar but the accuracy is a little bit different. That because some interval like 20 minute may better shows the influence of Trump's tweets for the market. When interval is small, market may have no time to response. When interval is large, the change of market may include many noise caused by other aspects.

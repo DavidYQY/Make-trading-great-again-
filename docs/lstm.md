@@ -92,7 +92,7 @@ We have several hyper-parameters that may influence our training results. Based 
 | LEARNING_RATE | 0.0003 | Small learning rate makes the model converge slowly but large learning rate may misguide the model |
 | LEARNING_RATE_DECAY| decay 0.8 per 10 epochs | When the model become more close to global minimum, we should decay the learning rate |
 
-Tab.1 Important parameters in the model 
+<center>Tab.1 Important parameters in the model  </center>
 
 
 ## Experiment Result
@@ -144,6 +144,8 @@ Tab.2 Comparison of using pre-trained embeddings and concatenating features.
 At first, we compare our model using 5 minute interval after the created time of the tweets. We also trained our model using 10, 15, 20, 30, 40 intervals to compare our model performance.
 
 ![all](pic/lstm/all.png)
+
+
 <center>Fig.8 Test accuracy and loss with training step for different time intervals </center>
 
 <style type="text/css">

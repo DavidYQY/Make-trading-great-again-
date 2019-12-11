@@ -1,6 +1,6 @@
 ---
-title: Long Short-Term Memory
-nav_include: 2
+title: 
+nav_include: 1
 ---
 
 ## Contents
@@ -8,16 +8,9 @@ nav_include: 2
 *  
 {: toc}
 
-## Introduction 
+## S&P500 Data
 
-Automatic text classification can be done in many different ways in machine learning as we have discussed and showed before. We also explore the task using deep learning models.
-
-### Recurrent Neural Networks
-Recurrent Neural Networks (RNN) are good at modeling sequence data, achieving excellent performance in Natural Language Processing field. When humans read sentences, they understand each word based on the understanding of previous words. Traditional neural networks can not handle this but RNN breaks through the limitation.  
-
-### Long Short-Term Memory
-
-
+Since we are interested in whether we can use Trump tweets to predict stock market movements (in our baseline model, up or down) in the ﬁrst 5 minutes after each tweet, we specifically look at the up and down percentage within any non-overlapping 5-minute intervals across all data. The result is shown below. Given this, we have a pretty balanced sample, and no need to worry about our classiﬁer predicting only one class.
 
 <table border="1" style="margin: 0px auto;">
   <tr>

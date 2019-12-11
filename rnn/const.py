@@ -10,7 +10,7 @@ _time = time.strftime('%m-%d %H:%M:%S', time.localtime())
 MAX_VOCAB_SIZE = 10000
 USE_PRETRAINED_EMBEDDING = True
 CONCAT_RETWEET_AND_FAV = True
-MAX_SAMPLE_LENGTH = 30
+MAX_SAMPLE_LENGTH = 50
 EMBED_DIM = 300
 HIDDEN_DIM = 128
 DROPOUT_RATE = 0.5
@@ -19,11 +19,11 @@ RNN_TYPE = 'LSTM'
 
 
 # Train Parameter
-NUM_EPOCH = 50
+NUM_EPOCH = 100
 BATCH_SIZE = 256
 LEARNING_RATE = 3e-4
 LEARNING_RATE_DECAY_EVERY_EPOCHS = 10
-LEARNING_RATE_DECAY = 0.9
+LEARNING_RATE_DECAY = 0.8
 SAVE_EVERY_EPOCHS = 1000
 
 # Val Parameter
@@ -37,6 +37,6 @@ _name = 'vocab-{}-pretrained-{}-concat-{}-length-{}-emb-{}-hidden-{}-dropout-{:.
 )
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-TRAIN_DIR = 'runs/%s/' % _name
+TRAIN_DIR = 'rnn/models/%s/' % _name
 MODEL_NAME = '%s' % _name
 #############

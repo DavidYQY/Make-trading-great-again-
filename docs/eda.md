@@ -37,7 +37,9 @@ We are interested in quantify his impact on Twitter by favorite counts and retwe
 
 As we can see in the ﬁgure, Trump’s tweets did not have strong impact on Twitter during 2009-2015. But after he started his campaign and subsequently became president, his Tweets’ retweets and favorite counts has been signiﬁcantly increased. His tweets are retweeted around 20,000 times and have been marked as favorite 80,000 times per month on average.
 
-![Trump’s Twitter impact over time](pic/eda/Trump_impact_by_month.jpeg)
+<p align="center">
+<img src="pic/eda/Trump_impact_by_month.jpeg" width="700"/>
+</p>
 
 
 ### Frequency Analysis
@@ -73,19 +75,28 @@ In 2016, similar to David Robinson's conclusion, there is a significant usage di
 
 From EDA we know that 7.5% of Trump’s tweet are from retweet, which shows that Trump still writes most of his tweets by himself. Accounts Trump likes to retweet include himself, his colleagues (@WhiteHouse, @GOPChairwoman, @Scavino45 (His Assistant), @TeamTrump (Trump Campaign)) and his family (@IvankaTrump (daughter), @EricTrump (son)). Accounts Trump likes to mention also includes some popular media, such as Fox News, CNN, and also President Obama. As we can see, Trump talks a lot about his policies and work on Twitter which makes our study possible.
 
-![Top 20 Users Trump likes to retweet](pic/eda/retweets.jpeg)
+<p align="center">
+<img src="pic/eda/retweets.jpeg" width="700"/>
+</p>
 
-![Top 20 Users Trump likes to mention](pic/eda/mentions.jpeg)
+
+<p align="center">
+<img src="pic/eda/mentions.jpeg" width="700"/>
+</p>
 
 ### Language Analysis
 
-![Top word frequently used](pic/eda/word_cloud.jpeg)
+<p align="center">
+<img src="pic/eda/word_cloud.jpeg" width="700"/>
+</p>
 
 Above is the word cloud of Trump's most frequently used word, as we can see in the graph, Trump loves to use the word great, thank and trump.
 
 CNN pointed out that Trump commonly made spelling mistakes and he even misspelled his wife's name on Twitter. Hence, we are curious to see what misspellings he made on Twitter in our dataset. In this study, because there is no standard spell checker tool that can achieve satisfactory performance on detecting whether a word is correct, we use a list of common misspellings containing 2239 words from Wikipedia and if Trump's Twitter word matches a misspelling in it.
 
-![Top misspelling frequently made](pic/eda/misspelling.jpeg)
+<p align="center">
+<img src="pic/eda/misspelling.jpeg" width="700"/>
+</p>
 
 The figure above is a word cloud of shows Trump's favorite misspelling, it seems that Trump misspelled 'received' to 'recieved' a lot of time.
 

@@ -6,11 +6,14 @@ title: Introduction
 AC209a Fall 2019          
 [GitHub Repository](https://github.com/DavidYQY/Make-trading-great-again-)
 
-## Problem Description and Motivation
+## Problem Statement and Motivation
 
-TODO 
+Current U.S. President Trump is very different from his predecessors in at least one aspect: his Twitter account activity level. Indeed, he tweets about 20-30 times in a single day, and a lot of the policy announcements were actually made through tweets! Hence, if we assume that a sitting U.S. President's uttering has the potential to move markets, it is reasonable to hypothesize that Trump's tweets could have noticeable impact on the S&P 500 Index. 
 
-## Data Source Description
+In this study we test this hypothesis by trying to predict both the *magnitude* and the *direction* of S&P 500 Index immediately after each tweet.
+
+## Introduction and Description of Data
+
 
 ### Twitter Dataset
 

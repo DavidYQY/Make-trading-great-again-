@@ -30,6 +30,7 @@ def evaluate(net, step, writer, val_dataloader):
         print('Test Accuracy: {:.2f}%'.format(100 * correct / total))
         writer.add_scalar('accuracy', correct / total, step)
         net.train()
+        return correct / total
 
 
 if __name__ == '__main__':
@@ -39,7 +40,7 @@ if __name__ == '__main__':
         os.makedirs(const.TRAIN_DIR)
 
     # Load dataset, transform word to id
-    all_samples = pd.read_csv('./data/lstm.cvs').to_dict('records')
+    all_samples = pd.read_csv('./data/lstm/50.csv').to_dict('records')
     all_text = []
     for sample in all_samples:
         if isinstance(sample['texts'], str):
@@ -78,6 +79,7 @@ if __name__ == '__main__':
 
     total_step = len(train_dataloader)
     step = 0
+    best = 0
     for epoch in range(const.NUM_EPOCH):
         net.train()
         for i, sample in enumerate(train_dataloader):
@@ -109,4 +111,7 @@ if __name__ == '__main__':
             torch.save(net.state_dict(), os.path.join(folder_name, 'model.pt-epoch{}'.format(epoch + 1)))
             print('OK.')
         if hasattr(const, "VAL_EVERY_EPOCHS") and (epoch + 1) % const.VAL_EVERY_EPOCHS == 0:
-            evaluate(net, step, writer, val_dataloader)
+            acc = evaluate(net, step, writer, val_dataloader)
+            if acc > best:
+                best = acc
+    print("Best Accuracy: {:.2f}%".format(100*best))

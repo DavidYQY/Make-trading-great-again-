@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-### Team 41: Rock Zhou, Jingyuan Liu, Yaoyang Lin, Qiuyang Yin
+### Team 68: Rock Zhou, Jingyuan Liu, Yaoyang Lin, Qiuyang Yin
 AC209a Fall 2019          
 [GitHub Repository](https://github.com/DavidYQY/Make-trading-great-again-)
 

@@ -55,8 +55,7 @@ def preprocessing(text):
 
         # Remove stop words from list of tokenized words
         if new_word != '' and new_word not in STOPWORDS:
-            # lemmatization
-            new_words.append(lemmatizer.lemmatize(new_word))
+            new_words.append(new_word)
     return new_words
 
 def findRetweetAcount(tokenized_text):

@@ -94,36 +94,15 @@ TODO:
 
 ![acc-1](pic/lstm/accuracy-1.png)
 <center>Fig.6  </center>
-TODO:
-<body style="text-align:center;">
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
-.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-lboi"></th>
-    <th class="tg-lboi"><span style="font-weight:bold">Concat features True</span></th>
-    <th class="tg-lboi"><span style="font-weight:bold">Concat features False</span></th>
-  </tr>
-  <tr>
-    <td class="tg-lboi"><span style="font-weight:bold">Pre-trained True</span></td>
-    <td class="tg-9wq8">52.95%</td>
-    <td class="tg-9wq8">52.63%</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><span style="font-weight:bold">Pre-trained Flase</span></td>
-    <td class="tg-c3ow">52.71%</td>
-    <td class="tg-c3ow">51.38%</td>
-  </tr>
-</table>
-</body>
+
+
+| | Concat Features True | Concat Features False |
+| ---- | ---- | ---- |
+| **Pre-trained True** | 52.95% | 52.63% |
+| **Pre-trained False** | 52.71% | 51.38% |
 <center>Tab.2  </center>
+
+
 ![loss-1](pic/lstm/loss-1.png)
 <center>Fig.7  </center>
 TODO:
@@ -133,33 +112,7 @@ TODO:
 ![all](pic/lstm/all.png)
 <center>Fig.8  </center>
 
-<body style="text-align:center;">
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-0lax{text-align:left;vertical-align:top}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-0pky"><span style="font-weight:bold">time interval</span></th>
-    <th class="tg-0pky">5 min</th>
-    <th class="tg-0pky">10 min</th>
-    <th class="tg-0pky">15 min</th>
-    <th class="tg-0pky">20 min</th>
-    <th class="tg-0pky">30 min</th>
-    <th class="tg-0pky">40 min</th>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><span style="font-weight:bold">Test accuracy</span></td>
-    <td class="tg-0pky">52.95%</td>
-    <td class="tg-0pky">53.82%</td>
-    <td class="tg-0pky">53.31%</td>
-    <td class="tg-0pky">55.28%</td>
-    <td class="tg-0pky">50.92%</td>
-    <td class="tg-0pky">53.22%</td>
-  </tr>
-</table>
-</body>
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| **Time interval** | 5 min | 10 min | 15 min | 20 min | 30 min | 40 min |
+| **Test accuracy** | 52.95% | 53.82% | 53.31% | 55.28% | 50.92% | 53.22% |
 <center>Tab.3  </center>

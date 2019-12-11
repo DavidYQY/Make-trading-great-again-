@@ -63,7 +63,9 @@ Our main network stucture are as follows:
 First, we do word embedding to get the word representations and then fit them into LSTM units (as we mentioned in Introduction part). We add dropout to alleviate the overfit problem. To fully utilize the information of each tweet, we concatenate the retweet and favorite count as two additional features into the   output from LSTM layer (We compared the results with not concatenating additional features in Abalation study part). Last we use a linear layer to get the output as our predicted label.
 
 For loss function, we use cross entropy, which is common for classification problem:
-$$L = - \frac{1}{N} \sum y_{i} log(p(y_{i})) + (1-y_{i})log(1-p(y_{i}))$$
+
+<center>$L = - \frac{1}{N} \sum y_{i} log(p(y_{i})) + (1-y_{i})log(1-p(y_{i})),$</center>
+
 where y is the label (1 for up and 0 for down) and p(y) is the predicted probability of the sample.
  
 <p align="center">
@@ -90,9 +92,7 @@ We have several hyper-parameters that may influence our training results. Based 
 | LEARNING_RATE | 0.0003 | Small learning rate makes the model converge slowly but large learning rate may misguide the model |
 | LEARNING_RATE_DECAY| decay 0.8 per 10 epochs | When the model become more close to global minimum, we should decay the learning rate |
 
-
-
-<center>Tab.1 Important parameters in the model </center>
+<center>Tab.1 Important parameters in the model  </center>
 
 
 ## Experiment Result
@@ -128,7 +128,7 @@ To justify our model, we do ablation study for whether using pre-trained embeddi
     <td class="tg-c3ow">51.38%</td>
   </tr>
 </table>
-<center>Tab.2  </center>
+Tab.2 Comparison of using pre-trained embeddings and concatenating features.
 
 ![acc-1](pic/lstm/accuracy-1.png)
 <center>Fig.6 Test accuracy comparison with training step </center>
@@ -144,6 +144,8 @@ To justify our model, we do ablation study for whether using pre-trained embeddi
 At first, we compare our model using 5 minute interval after the created time of the tweets. We also trained our model using 10, 15, 20, 30, 40 intervals to compare our model performance.
 
 ![all](pic/lstm/all.png)
+
+
 <center>Fig.8 Test accuracy and loss with training step for different time intervals </center>
 
 <style type="text/css">
@@ -173,6 +175,6 @@ At first, we compare our model using 5 minute interval after the created time of
     <td class="tg-0pky">53.22%</td>
   </tr>
 </table>
-<center>Tab.3 Test accuracy with step for different time intervals </center>
+Tab.3 Test accuracy with step for different time intervals.
 
 The loss trends of different intervals seem very similar but the accuracy is a little bit different. That because some interval like 20 minute may better shows the influence of Trump's tweets for the market. When interval is small, market may have no time to response. When interval is large, the change of market may include many noise caused by other aspects.

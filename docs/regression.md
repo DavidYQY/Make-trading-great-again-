@@ -16,7 +16,7 @@ First, the returns are defined as $$(P_b-P_a)/P_a$$, where $P_a$ is the nearest 
 <p align="center">
 <img src="pic/regression/returns_hist.png" width="700"/> </p>
 <center>Figure 1: S&P 500 Index 5-min-post-tweet Returns Histogram</center>
-<br></br>
+<br>
 
 We also need to recognize that it is very easy to data snoop, and thus extreme care is needed. For example, our data [source](http://www.trumptwitterarchive.com) documents that even though tweets are collected "[every 1 minute](http://www.trumptwitterarchive.com/about)", [ "favorite counts and retweet counts" are continuously updated until they fall out of the the most recent 100 tweets](https://github.com/bpb27/trump_tweet_data_archive). This means that the data we get for these two features are the count a few *days* after that tweet was out. This implies that they cannot be used to predict stock market movement *minutes* after the tweet. Another way to think about this is that the tens of thousands of retweet/favorite counts in our data set are almost entirely realizations *after* our stock movement realizations! Similar reasons apply to comments (and any feature derived thereof), and hence are excluded in our model.
 

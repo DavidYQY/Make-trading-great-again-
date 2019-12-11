@@ -40,7 +40,7 @@ if __name__ == '__main__':
         os.makedirs(const.TRAIN_DIR)
 
     # Load dataset, transform word to id
-    all_samples = pd.read_csv('./data/lstm/50.csv').to_dict('records')
+    all_samples = pd.read_csv('./data/lstm/15.csv').to_dict('records')
     all_text = []
     for sample in all_samples:
         if isinstance(sample['texts'], str):

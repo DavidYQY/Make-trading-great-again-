@@ -19,7 +19,7 @@ RNN_TYPE = 'LSTM'
 
 
 # Train Parameter
-NUM_EPOCH = 50
+NUM_EPOCH = 100
 BATCH_SIZE = 256
 LEARNING_RATE = 3e-4
 LEARNING_RATE_DECAY_EVERY_EPOCHS = 10
@@ -37,6 +37,6 @@ _name = 'vocab-{}-pretrained-{}-concat-{}-length-{}-emb-{}-hidden-{}-dropout-{:.
 )
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-TRAIN_DIR = 'rnn/models/50/%s/' % _name
+TRAIN_DIR = 'rnn/models/15/%s/' % _name
 MODEL_NAME = '%s' % _name
 #############

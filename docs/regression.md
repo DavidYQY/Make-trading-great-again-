@@ -32,7 +32,7 @@ The first step in modeling is to figure out the $m$ that our model performs the 
 <p align="center">
 <img src="pic/regression/test_set_mse.png" width="700"/> </p>
 <center>Figure 2: MSE of Predicting Returns with Different Time Intervals </center>
-<br></br>
+<br>
 
 Seemingly contradictory results from predicting Up or Down in the previous section, where as $m$ increases the prediction accuracy tend to increase. But this actually makes sense in that as more time elapses after each tweet, the returns should have higher standard deviations (think of a random walk model), and thus leading to higher MSE in our regression prediction. At the same time, more and more people interpret the tweet and react (hopefully) in the *direction* of what our model predicts, and hence leading to higher prediction *accuracy* in general as $m$ increases.
 
@@ -45,7 +45,7 @@ We first ran simple Linear Regression, and plot the residuals vs fitted graph in
 <p align="center">
 <img src="pic/regression/residual_lm.png" width="700"/> </p>
 <center>Figure 3: Residuals vs Fitted </center>
-<br></br>
+<br>
 
 The training set $R^2$ is basically 0, while the test set $R^2$ is negative! Very poor model. It looks like our feature did not capture most of the variability of the data. We can also see this also by looking at the scale of the x and y axes. The predicted values range mostly from -5 to 5, while the noise in returns is so big that the residuals range most from -50 to 50!
 
@@ -54,13 +54,13 @@ Similar results show up in Lasso model - not suprising, since we are certainly n
 <p align="center">
 <img src="pic/regression/residual_lasso.png" width="700"/> </p>
 <center>Figure 4: Residuals vs Fitted for Lasso </center>
-<br></br>
+<br>
 
 Maybe it is the structure of our feature set that are not linear? Let us try the Random Forest Model. We set n_estimators = 100 and use cross validation to tune the hyperparameter max_depth. The final model yields the following result. 
 
 <p align="center">
 <img src="pic/regression/residual_rf.png" width="700"/> </p>
 <center>Figure 5: Residuals vs Fitted for Random Forest</center>
-<br></br>
+<br>
 
 Pretty disappointing - the best model gives us essentially no predictive power in the test set. Looks like predicting the actual *return* (as opposed to *direction*) is next-order difficult! We will discuss possible  improvements in our final conclusion section.

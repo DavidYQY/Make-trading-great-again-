@@ -5,6 +5,9 @@ rnn/GoogleNews-vectors-negative300.bin
 #trained_models
 rnn/models/*
 
+#lstm data
+data/lstm/*
+
 # Mac DS_Store
 .DS_Store
 

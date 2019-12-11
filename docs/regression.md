@@ -36,7 +36,22 @@ Seemingly contradictory results from predicting Up or Down in the previous secti
 
 For a more realistic set up, instead of predicting 1-minute ahead return, we choose $m = 5$ to take into account of potential human intervention before trade execution.
 
-Next, 
-
 ### Key Model Results
+
+We first ran simple Linear Regression, and plot the residuals vs fitted graph in Figure 3 below:
+
+<p align="center">
+<img src="pic/regression/residual_lm.png" width="700"/> </p>
+<center>Figure 3: Residuals vs Fitted </center>
+
+
+<p align="center">
+<img src="pic/regression/residual_lasso.png" width="700"/> </p>
+<center>Figure 4: Residuals vs Fitted for Lasso </center>
+
+
+<p align="center">
+<img src="pic/regression/residual_rf.png" width="700"/> </p>
+<center>Figure 5: Residuals vs Fitted for Random Forest</center>
+
 

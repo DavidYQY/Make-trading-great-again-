@@ -95,7 +95,7 @@ TODO:
 ![acc-1](pic/lstm/accuracy-1.png)
 <center>Fig.6  </center>
 TODO:
-
+<body style="text-align:center;">
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
@@ -122,6 +122,7 @@ TODO:
     <td class="tg-c3ow">51.38%</td>
   </tr>
 </table>
+</body>
 <center>Tab.2  </center>
 ![loss-1](pic/lstm/loss-1.png)
 <center>Fig.7  </center>
@@ -132,6 +133,7 @@ TODO:
 ![all](pic/lstm/all.png)
 <center>Fig.8  </center>
 
+<body style="text-align:center;">
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
@@ -159,4 +161,5 @@ TODO:
     <td class="tg-0pky">53.22%</td>
   </tr>
 </table>
+</body>
 <center>Tab.3  </center>

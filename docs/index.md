@@ -14,9 +14,11 @@ In this study we test this hypothesis by trying to predict both the *magnitude* 
 
 ## Introduction and Description of Data
 
-We live in a digital world where social media is ubiquitous. As an example, Twitter alone produces, on average, 500 million tweets a day. Individual tweets can have profound effects, particularly the ones coming from politicians. To this end, those tweets are influential and ripe for analysis.
+We live in a digital world where social media is ubiquitous. As an example, Twitter alone produces, on average, 500 million tweets a day. Individual tweets can have profound effects, particularly the ones coming from politicians. To this end, analyzing those tweets are important and significant.
 
-In particular, we are interested in studying the relationship between Trump's tweets and S&P500 Index movements. Concretely, does his tweets have any predictive power on where the market is going?
+In particular, we are interested in studying the relationship between Trump's tweets and S&P500 Index movements. Concretely, does his tweets have any predictive power on where the market is going? This is a challenging problem, not just that there are lots of tweets available, but more importantly, those tweets contain textual information that we have not encountered before.
+
+Thus, our project is split into a few parts. We first conduct EDA to explore the structure of the data. Then we try to predict the *direction* (i.e. up or down) of the market movement through baseline models and Long Short-Term Memory (LSTM) model. We finally briefly look at regression models to predict the actual returns of of the S&P 500 right after the tweet, before concluding with a discussion of possible future work.
 
 ### Twitter Dataset
 
@@ -28,11 +30,6 @@ S&P 500 Index represents about 500 of large-cap companies that cover roughly 80%
 
 S&P dataset is purchased from ﬁrstratedata.com. The dataset consists of 670,830 rows of minute-by-minute S&P500 (ˆGSPC) data from January 2013 to November 2019 during trading hours (9:30 AM - 4:00 PM ET) of each trading day. For each minute, we have open, high, low, and close prices. To be consistent, we use only the close price for our analysis.
 
-## Research Questions
-
-The core of what we want to look at is whether Trump’s tweets (and the features of which, such as number of likes and comments under tweets, among others) provide information on broader stock market returns. We would model the inﬂuence Trump’s tweets have on stock market with statistic models, natural language processing knowledge and deep neural networks.
-
-TODO
 
 ## Sources:
 

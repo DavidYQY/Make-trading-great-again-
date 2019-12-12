@@ -54,7 +54,7 @@ From the ﬁgure above, we know that Donald is surprisingly active on Twitter at
 <img src="pic/eda/frequency_over_time.jpeg" width="700"/>
 </p>
 
-Trump has 3 major sources to post his tweets, web, iPhone, and Android. In our data-set, 33\% of tweets are from iPhone, 34\% of tweets are from Android, 28\% of tweets are from the web. Most of the tweets from web client were posted early so that we only focus on the Android and iPhone.
+Trump has 3 major sources to post his tweets, web, iPhone, and Android. In our data-set, 33% of tweets are from iPhone, 34% of tweets are from Android, 28% of tweets are from the web. Most of the tweets from web client were posted early so that we only focus on the Android and iPhone.
 
 <p align="center">
 <img src="pic/eda/iphonevsandroid_over_time.jpeg" width="700"/>

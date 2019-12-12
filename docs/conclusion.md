@@ -19,10 +19,18 @@ Next, we employed Long Short-Term Memory (LSTM) model that takes in entire sente
 Finally, we attempted to directly predict the *returns* of the S&P500 Index. Not so surprisingly, the shorter time we predict ahead, the accuracy as measured by MSE gets better. That said, the overall prediction result was surprisingly a disappointment. The best model yielded no positive predictive power and our feature set, which is entirely based on text, did not capture the relationship with the market. In the process we were also very cautious of any data snooping, but carefully taken out features that seem to make sense but actually should not be used; examples are favorite and retweet counts as well as comments -- they may be very rich in information, but unfortunately they will never be available *ex ante*.
 
 
-## Results and Interpretation
-
-
 ## Conclusions
+
+For the baseline classification models, generally speaking when the time interval becomes larger, the classfication accuracy becomes more precise. The potential reason behind this phenomon is that we have included the number of favorites and the number of retweets in the model, which is accumulative with the time. The ultimate (or till now) favorite numbers and retweet numbers can somewhat leak the tweets' influence towards the market and public audience, and thus the long term prediction can become more precise.
+
+By adding a third class zero, we relatively improve the accuracy of the classifier. This is practical since many tweets do not have influence on the market at all.
+
+With regard to the accuracy of different classifiers, we found that while random forest model has some advantage over other models for the binary(sign) prediction, it loses its superiority.
+
+For the feature importance section, we obtain top important words from the random forest models and compare the results to the one we use for the baseline (i.e. JPMorgan results). We found that our results correspond greatly to JPMorgan results, which is sign for our correctness.
+
+
+
 
 
 ## Future Improvements

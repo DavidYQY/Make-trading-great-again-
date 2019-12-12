@@ -21,15 +21,23 @@ Finally, we attempted to directly predict the *returns* of the S&P500 Index. Not
 
 ## Conclusions
 
+### Baseline models
+
 For the baseline classification models, generally speaking when the time interval becomes larger, the classfication accuracy becomes more precise. The potential reason behind this phenomon is that we have included the number of favorites and the number of retweets in the model, which is accumulative with the time. The ultimate (or till now) favorite numbers and retweet numbers can somewhat leak the tweets' influence towards the market and public audience, and thus the long term prediction can become more precise.
 
 By adding a third class zero, we relatively improve the accuracy of the classifier. This is practical since many tweets do not have influence on the market at all.
 
 With regard to the accuracy of different classifiers, we found that while random forest model has some advantage over other models for the binary(sign) prediction, it loses its superiority.
 
+### Feature Importance
+
 For the feature importance section, we obtain top important words from the random forest models and compare the results to the one we use for the baseline (i.e. JPMorgan results). We found that our results correspond greatly to JPMorgan results, which is sign for our correctness.
 
+### LSTM
 
+### Regression
+
+In our mini adventure into the prediction of actual returns of the S&P500 Index post Trump’s tweets, if we treat the Linear Regression as baseline, Lasso regression and Random Forest indeed outperformed. However, there is zero practical use of the model, since it has 0 R2 value in the test set.
 
 
 

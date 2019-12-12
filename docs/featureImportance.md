@@ -40,7 +40,7 @@ Our results for binary classification and 3 classification are as follows:
 
 Here we print out top20 important words for both binary and 3 classifications. And then compare the words with the one we obtained from JPmorgan. The results is as follows:
 
-| JPmorgan wordlist | randomforest binary classification wordlist | randomforest 3 classification wordlist |
+| J. P. Morgan wordlist | randomforest binary classification wordlist | randomforest 3 classification wordlist |
 |-------------------|---------------------------------------------|----------------------------------------|
 | china             | wealth                                      | **great**                                 |
 | billion           | **great**                                       | **country**                           |

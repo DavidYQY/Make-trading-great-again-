@@ -8,7 +8,7 @@ AC209a Fall 2019
 
 ## Problem Statement and Motivation
 
-The current U.S. President Donald J. Trump is very different from his predecessors in at least one aspect: his Twitter account activity level. Indeed, he tweets about 20-30 times in a single day, and some of the policy announcements were actually made through tweets! Hence, if we assume that a sitting U.S. President's uttering has the potential to move markets, it is reasonable to hypothesize that Trump's tweets could have noticeable impact on the S&P 500 Index. 
+The current U.S. President Donald J. Trump is very different from his predecessors in at least one aspect: his Twitter account activity level. Indeed, he tweets about 20-30 times on average in a single day, and some of the policy announcements were actually made through his tweets! Hence, if we assume that a sitting U.S. President's uttering has the potential to move markets, it is reasonable to hypothesize that Trump's tweets could have noticeable impact on the S&P 500 Index. 
 
 In this study we test this hypothesis by trying to predict both the *direction* and actual *returns* of S&P 500 Index immediately after each tweet.
 
@@ -18,7 +18,7 @@ We live in a digital world where social media is ubiquitous. As an example, Twit
 
 In particular, we are interested in studying the relationship between Trump's tweets and S&P500 Index movements. Concretely, does his tweets have any predictive power on where the market is going? This is a challenging problem, not just that there are lots of tweets available, but more importantly, those tweets contain textual information that we have not encountered before.
 
-Thus, our project is split into a few parts. We first conduct EDA to explore the structure of the data. Then we try to predict the *direction* (i.e. up or down) of the market movement through baseline models (with a special section dedicated to feature importance) and Long Short-Term Memory (LSTM) model. We finally briefly look at regression models to predict the actual returns of of the S&P 500 right after the tweet, before concluding with a discussion of possible future improvements.
+Thus, our project is split into a few parts. We first conduct EDA to explore the structure of the data. Then we try to predict the *direction* (i.e. up or down) of the market movement through baseline models (with a special section dedicated to feature importance) and Long Short-Term Memory (LSTM) model. We finally briefly look at regression models to predict the actual *returns* of of the S&P 500 Index right after the tweet. Across all models we also explore the prediction accuracies across different time intervals post tweets (e.g. 5-minutes post tweet price movement vs 60-minute post tweet price movement). We finally conclude with a discussion of possible future improvements.
 
 ## Description of Data
 
@@ -36,9 +36,9 @@ S&P dataset is purchased from ﬁrstratedata.com. The dataset consists of 670,83
 ## Literature Review/Related Work
 
 
-The relationship between social media and the stock market has been widely studied in the research area. Many studies found that future stock return is related to social media such as Twitter. The research conducted by Hentschel et al. studied Twitter hashtags and NASDAQ and NYSE stocks [7]. They claimed that there is a correlation between tweet volume and market performance and found that Twitter can be an indicator of important events that impact the stock market. Gilbert and Karahalios [8] built and create the "Anxiety Index" and discovered that the increase of anxiety in blogs can negatively affect the S&P 500 index even though the posts are not related to finance. Bartov et al. [4] proposed a method to use Twitter to predict firm-level earnings and stock returns.
+The relationship between social media and the stock market has been widely studied by other researchers. Many studies found that future stock return is related to social media such as Twitter. Hentschel et al. studied Twitter hashtags and NASDAQ and NYSE stocks [7]. They claimed that there is a correlation between tweet volume and market performance and found that Twitter can be an indicator of important events that impact the stock market. Gilbert and Karahalios [8] built and created the "Anxiety Index" and discovered that the increase of anxiety in blogs can negatively affect the S&P 500 Index even though the posts are not related to finance. Bartov et al. [4] proposed a method to use Twitter to predict firm-level earnings and stock returns.
 
-The tweets of Donald Trump are also been thoroughly analyzed by other researches. After he becomes the president, his impact has been dramatically increased on Twitter. Several methods have been proposed in utilizing Trump's tweets to predict the stock market. J.P.Morgan Research [2] created the “Volfefe Index” and suggested that Trump Tweet can have a statistically significant impact on the market. Juma’h et al. [9] used the effect of President Trump’s tweets to predict companies’ performance. These works support our hypothesis that the tweets from Donald Trump can be useful for stock market prediction.
+The tweets of Trump have also been thoroughly analyzed in other researches. After he became the president, his impact dramatically increased on Twitter. Several methods have been proposed to utilize Trump's tweets to predict the stock market. J.P. Morgan Research [2] created the “Volfefe Index” and suggested that Trump tweet can have a statistically significant impact on the market. Juma’h et al. [9] used the effect of President Trump’s tweets to predict companies’ performance. These works support our hypothesis that the tweets from Donald Trump can be useful for stock market prediction.
 
 
 ## Sources:

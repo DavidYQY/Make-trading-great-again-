@@ -38,3 +38,5 @@ Finally, we attempted to directly predict the *returns* of the S&P500 Index with
 <img src="pic/conclusion/pos_neg.png" width="700"/> </p>
 <center>Figure 2: Positive and Negative Word Count Before and After Character Limit Change</center>
 <br>
+
+2. One possible limitation of our research is that, as we discussed before, Trump’s tweets are not always posted by himself. The tweet posted by introducing more noise into the model since some studies showed that the tweet from his team would be less aggressive. One way to overcome this problem is that we could filter out the tweets that not tweeted by him. This is difficult now since Trump switches Android to iPhone nowadays so that we can no longer simply tell the difference between different sources. In the future, we could possibly use the result from http://didtrumptweetit.com/ (which is a website contains the probability the tweet is posted by Trump).

@@ -20,8 +20,18 @@ Next, we employed Long Short-Term Memory (LSTM) model to
 ## Results and Interpretation
 
 
+
+
 ## Conclusions
 
+
+### LSTM model
+Compare to baseline model, the LSTM model is slightly better overall. Specifically, when the time interval is shorter than 20 minutes, LSTM model performs better whereas when time interval is longer, the performance goes down because the noise confused the network to make a right choice. 
+
+Why LSTM is not strikingly better than baseline model:
+
+- The size of our dataset is limited. It might have been more than sufficient for vanilla machine learning models but is perhaps not quite enough for deep learning models.
+- Trump's tweets are sometimes much richer than can be represented in our dataset or mapped effectively to numerical values. For example, information such as links and videos was lost in our dataset, and emojis were possibly mapped to values that do not make much sense through word embedding. This way the powerful LSTM model could be confused. However, the abovementioned problem presents a different trade-off situation for our baseline models, which inherent have difficulty processing the lost context and noise.
 
 ## Future Work
 
@@ -36,3 +46,10 @@ Next, we employed Long Short-Term Memory (LSTM) model to
 <img src="pic/conclusion/pos_neg.png" width="700"/> </p>
 <center>Figure 2: Positive and Negative Word Count Before and After Character Limit Change</center>
 <br>
+
+- For deep learning models, there are three things to imprve.
+	- Include hierarchical neural attention branch. Attention let the network focuse more on related words and filtered our useless information. This will help remit the noise which confused the network. Even though we know little of how our human brain learns and remembers sequences, we could draw insights from human attention mechanism, which is widely used in current research fields.
+
+	-  Leverage image as a learning bias to reason about language perception. A major difference between human and machine is that humans form a coherent and global understanding of a scene, where high-level knowledge provides resilience in the face of errors from low-level perception. Thus the combination of language and vision provides a prism to text understanding. This will alleviate the information lost of emojis, images or videos.
+
+	-  	Use data augmentation. We could enlarge our datsets via generating more text data to boost up the models. In natural language processing field, it is hard to augmenting text due to high complexity of language. We are thinking about methods, for example, using synonym as substitute or extracting main structure of the sentence. It is difficult to achieve but have high research value for future improvement.

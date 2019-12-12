@@ -42,4 +42,4 @@ python -m lstm.train
 - ```Feature Importance```: notebook about the feature importance
 - ```sentenment-analysis.ipynb```: notebook about the sentiment analysis (concluded in the eda section on the website)
 
-Our website: 
+Our website: [website](https://davidyqy.github.io/Make-trading-great-again-/)

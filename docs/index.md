@@ -8,13 +8,13 @@ AC209a Fall 2019
 
 ## Problem Statement and Motivation
 
-Current U.S. President Donald J. Trump is very different from his predecessors in at least one aspect: his Twitter account activity level. Indeed, he tweets about 20-30 times in a single day, and some of the policy announcements were actually made through tweets! Hence, if we assume that a sitting U.S. President's uttering has the potential to move markets, it is reasonable to hypothesize that Trump's tweets could have noticeable impact on the S&P 500 Index. 
+The current U.S. President Donald J. Trump is very different from his predecessors in at least one aspect: his Twitter account activity level. Indeed, he tweets about 20-30 times in a single day, and some of the policy announcements were actually made through tweets! Hence, if we assume that a sitting U.S. President's uttering has the potential to move markets, it is reasonable to hypothesize that Trump's tweets could have noticeable impact on the S&P 500 Index. 
 
-In this study we test this hypothesis by trying to predict both the *magnitude* and the *direction* of S&P 500 Index immediately after each tweet.
+In this study we test this hypothesis by trying to predict both the *direction* and actual *returns* of S&P 500 Index immediately after each tweet.
 
 ## Introduction and Description of Data
 
-We live in a digital world where social media is ubiquitous. As an example, Twitter alone produces, on average, 500 million tweets a day. Individual tweets can have profound effects, particularly the ones coming from politicians. To this end, analyzing those tweets are important and significant.
+We live in a digital world where social media is ubiquitous. As an example, Twitter alone produces, on average, 500 million tweets a day. Individual tweets can have profound effects, particularly the ones coming from politicians. To this end, analyzing those tweets is important and significant.
 
 In particular, we are interested in studying the relationship between Trump's tweets and S&P500 Index movements. Concretely, does his tweets have any predictive power on where the market is going? This is a challenging problem, not just that there are lots of tweets available, but more importantly, those tweets contain textual information that we have not encountered before.
 

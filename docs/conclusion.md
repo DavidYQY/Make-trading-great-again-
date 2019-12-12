@@ -8,7 +8,7 @@ nav_include: 7
 *  
 {: toc}
 
-## Project Trajectory, Interpretation
+## Project Trajectory and Interpretation
 
 With this project we set out hoping to extract information from Trump's tweets that are related to the movement of the financial market. Our project is divided into two parts: First, we try to predict the *direction* of the S&P500 Index, and second the actual *returns* of the Index.
 

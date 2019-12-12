@@ -1,5 +1,5 @@
 ---
-title: Conclusion
+title: Project Trajectory and Conclusion
 nav_include: 7
 ---
 
@@ -8,7 +8,9 @@ nav_include: 7
 *  
 {: toc}
 
-## Conclusion
+## Project Trajectory, Interpretation, and Conclusion
+
+
 
 
 

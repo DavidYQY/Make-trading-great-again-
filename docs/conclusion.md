@@ -8,11 +8,16 @@ nav_include: 7
 *  
 {: toc}
 
-## Project Trajectory, Interpretation, and Conclusion
+## Project Trajectory, Interpretation
 
-With this project we set out hoping to extract information from Trump's tweets that are related to the movement of the financial market. Specifically, we extracted 20 key words that we think are important. 
+With this project we set out hoping to extract information from Trump's tweets that are related to the movement of the financial market. Our project is divided into two parts: First, we try to predict the *direction* of the S&P500 Index, and second the actual *returns* of the Index.
+
+In the first part, we started off doing a sentiment analysis, extracting features such as positive and negative word counts in each tweet. We also referenced J.P. Morgan's Research report and extracted 20 key words that could be impactful on the market. The baseline models we used are Logistic Regression (with CV), KNN, and Random Forest. The result was better than we thought: all of the model achieved somewhere between 52-54% accuracy on the test set. Also surprising to us at first was that as the number of minutes ahead increases, our prediction accuracy increases on average. We also looked the feature importance in our baseline model and compared with those used in J.P. Morgan Research.
+
+Next, we employed Long Short-Term Memory (LSTM) model to 
 
 
+## Conclusions
 
 
 ## Future Improvements

@@ -25,9 +25,9 @@ RNN often suffers from the situation when the gap between the relevant informati
 
 Long Short Term Memory network (LSTM) is a special kind of RNN, which has the competence to learn long-term dependencies. 
 
-All RNNs have the form of a chain of repeating modules ($h$ in Fig 1) of neural network. In standard RNNs, thie module is simple with a single tanh layer.
+All RNNs have the form of a chain of repeating modules ($h$ in Figure 1) of neural network. In standard RNNs, thie module is simple with a single tanh layer.
 
-LSTM has four layters, interacting in a special way as showing in Fig 2. The key idea is the cell state (the horizontal line going through the top of the module). It will remove or add information to the cell state, regulated by gate structuress.
+LSTM has four layters, interacting in a special way as showing in Figure 2. The key idea is the cell state (the horizontal line going through the top of the module). It will remove or add information to the cell state, regulated by gate structuress.
 
 ![lstm](pic/lstm/lstm.jpeg)
 <center>Figure 2: The repeating module in an LSTM </center>
@@ -132,9 +132,9 @@ To justify our model, we do ablation study for whether using pre-trained embeddi
 Table 2: Comparison of using pre-trained embeddings and concatenating features.
 
 ![acc-1](pic/lstm/accuracy-1.png)
-<center>Fig.6 Test accuracy comparison with training step </center>
+<center>Figure 6: Test accuracy comparison with training step </center>
 ![loss-1](pic/lstm/loss-1.png)
-<center>Fig.7 Loss comparison with training step </center>
+<center>Figure 7: Loss comparison with training step </center>
 #### Result Analysis
 - **Using pre-trained embeddings and concatenating features is better.** We can see from the accuracy plot, the best result is both using pre-trained embeddings and concatenating retweet and favorite counts. This makes sense, because Google News vocabulory is close to Trump's tweets, which gives our model good initial weights for word embedding. And intuitively the retweet and favorite counts shows the influence of the tweets in some extent.
 - **Concatenating two features makes model not stable.** Seeing from the test accuracy plot, it fluctuate more violetly when concatenate two features in the early training process.

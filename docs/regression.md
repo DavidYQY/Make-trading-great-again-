@@ -63,4 +63,9 @@ Maybe it is the structure of our feature set that are not linear? Let us try the
 <center>Figure 5: Residuals vs Fitted for Random Forest</center>
 <br>
 
-Pretty disappointing - the best model gives us essentially no predictive power in the test set. Looks like predicting the actual *return* (as opposed to *direction*) is next-order difficult! We will discuss possible  improvements in our final conclusion section.
+Pretty disappointing - the best model gives us essentially no predictive power in the test set. Looks like predicting the actual *return* (as opposed to *direction*) is next-order difficult! We will discuss possible improvements in our conclusion section.
+
+
+## Conclusion
+In our mini adventure into the prediction of actual *returns* of the S&P500 Index post Trump's tweets, if we treat the Linear Regression as baseline, Lasso regression and Random Forest indeed outperformed. However, there is zero practical use of the model, since it has 0 $R^2$ value in the test set.
+

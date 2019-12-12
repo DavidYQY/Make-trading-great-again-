@@ -8,15 +8,19 @@ AC209a Fall 2019
 
 ## Problem Statement and Motivation
 
-Current U.S. President Donald J. Trump is very different from his predecessors in at least one aspect: his Twitter account activity level. Indeed, he tweets about 20-30 times in a single day, and some of the policy announcements were actually made through tweets! Hence, if we assume that a sitting U.S. President's uttering has the potential to move markets, it is reasonable to hypothesize that Trump's tweets could have noticeable impact on the S&P 500 Index. 
+The current U.S. President Donald J. Trump is very different from his predecessors in at least one aspect: his Twitter account activity level. Indeed, he tweets about 20-30 times in a single day, and some of the policy announcements were actually made through tweets! Hence, if we assume that a sitting U.S. President's uttering has the potential to move markets, it is reasonable to hypothesize that Trump's tweets could have noticeable impact on the S&P 500 Index. 
 
-In this study we test this hypothesis by trying to predict both the *magnitude* and the *direction* of S&P 500 Index immediately after each tweet.
+In this study we test this hypothesis by trying to predict both the *direction* and actual *returns* of S&P 500 Index immediately after each tweet.
 
 ## Introduction and Description of Data
 
-We live in a digital world where social media is ubiquitous. As an example, Twitter alone produces, on average, 500 million tweets a day. Individual tweets can have profound effects, particularly the ones coming from politicians. To this end, those tweets are influential and ripe for analysis.
+We live in a digital world where social media is ubiquitous. As an example, Twitter alone produces, on average, 500 million tweets a day. Individual tweets can have profound effects, particularly the ones coming from politicians. To this end, analyzing those tweets is important and significant.
 
-In particular, we are interested in studying the relationship between Trump's tweets and S&P500 Index movements. Concretely, does his tweets have any predictive power on where the market is going?
+In particular, we are interested in studying the relationship between Trump's tweets and S&P500 Index movements. Concretely, does his tweets have any predictive power on where the market is going? This is a challenging problem, not just that there are lots of tweets available, but more importantly, those tweets contain textual information that we have not encountered before.
+
+Thus, our project is split into a few parts. We first conduct EDA to explore the structure of the data. Then we try to predict the *direction* (i.e. up or down) of the market movement through baseline models (with a special section dedicated to feature importance) and Long Short-Term Memory (LSTM) model. We finally briefly look at regression models to predict the actual returns of of the S&P 500 right after the tweet, before concluding with a discussion of possible future improvements.
+
+First, some background information about our datasets:
 
 ### Twitter Dataset
 
@@ -28,14 +32,33 @@ S&P 500 Index represents about 500 of large-cap companies that cover roughly 80%
 
 S&P dataset is purchased from ﬁrstratedata.com. The dataset consists of 670,830 rows of minute-by-minute S&P500 (ˆGSPC) data from January 2013 to November 2019 during trading hours (9:30 AM - 4:00 PM ET) of each trading day. For each minute, we have open, high, low, and close prices. To be consistent, we use only the close price for our analysis.
 
-## Research Questions
 
-The core of what we want to look at is whether Trump’s tweets (and the features of which, such as number of likes and comments under tweets, among others) provide information on broader stock market returns. We would model the inﬂuence Trump’s tweets have on stock market with statistic models, natural language processing knowledge and deep neural networks.
+## Literature Review/Related Work
 
-TODO
+
+The relationship between social media and the stock market has been widely studied in the research area. Many studies found that future stock return is related to social media such as Twitter. The research conducted by Hentschel et al. studied Twitter hashtags and NASDAQ and NYSE stocks [7]. They claimed that there is a correlation between tweet volume and market performance and found that Twitter can be an indicator of important events that impact the stock market. Gilbert and Karahalios [8] built and create the "Anxiety Index" and discovered that the increase of anxiety in blogs can negatively affect the S&P 500 index even though the posts are not related to finance. Bartov et al. [4] proposed a method to use Twitter to predict firm-level earnings and stock returns.
+
+The tweets of Donald Trump are also been thoroughly analyzed by other researches. After he becomes the president, his impact has been dramatically increased on Twitter. Several methods have been proposed in utilizing Trump's tweets to predict the stock market. J.P.Morgan Research [2] created the “Volfefe Index” and suggested that Trump Tweet can have a statistically significant impact on the market. Juma’h et al. [9] used the effect of President Trump’s tweets to predict companies’ performance. These works support our hypothesis that the tweets from Donald Trump can be useful for stock market prediction.
+
 
 ## Sources:
 
 [1] M. Hu and B. Liu, “Mining and summarizing customer reviews,” in Proceedings of the tenth ACM SIGKDD international conference on Knowledge discovery and data mining, pp. 168–177, ACM, 2004.
 
 [2] J. Y. Munier Scalem, Henry St John, “Introducing the volfefe index,” J.P.Morgan Research, vol. Sep 6, pp. 144–151, 2019.
+
+[3] C. H. Liu, Applications of twitter emotion detection for stock market prediction.  PhD thesis, Massachusetts Institute of Technology, 2017.
+
+[4] E. Bartov, L. Faurel, and P. S. Mohanram, “Can twitter help predict firm-level earningsand stock returns?,”The Accounting Review, vol. 93, no. 3, pp. 25–57, 2017.
+
+[5] S.  Hochreiter  and  J.  Schmidhuber,  “Long  short-term  memory,”Neural computation,vol. 9, no. 8, pp. 1735–1780, 1997.
+
+[6] A. Agarwal, B. Xie, I. Vovsha, O. Rambow, and R. Passonneau, “Sentiment analysis of twitter data,” inProceedings of the Workshop on Language in Social Media (LSM 2011),pp. 30–38, 2011.
+
+[7] Hentschel, M., & Alonso, O. (2014). Follow the money: A study of cashtags on
+Twitter. First Monday, 19(8).
+
+[8] Gilbert, E., & Karahalios, K. (2010). Widespread worry and the stock market.
+In Proceedings of the International Conference on Weblogs and Social.
+
+[9] Juma’h, Ahmad H., and Yazan Alnsour. "Using Social Media Analytics: The Effect of President Trump’s Tweets On Companies’ Performance." Journal of Accounting and Management Information Systems 17.1 (2018): 100-121.

@@ -1,6 +1,6 @@
 ---
 title: Feature Importance
-nav_include: 7
+nav_include: 3
 ---
 
 ## Contents
@@ -63,6 +63,6 @@ Here we print out top20 important words for both binary and 3 classifications. A
 | trade             | nation                                      | business                               |
 | never             | **trade**                                       | going                                  |
 
-We bold the overlapped words to clarify the results. We can notice that all the methods have point out that some words like "great", "people", "president", "country" to among top importance. This just justifies that our results correspond to the one with JPmorgan, which is also a signal that our method is correct and valid.
+We bold the overlapped words to clarify the results. We notice that all the methods have point out that some words like "great", "people", "president", "country" to among top importance. This just justifies that our results correspond to the one with J.P. Morgan, which is also a signal that our method is correct and valid.
 
 

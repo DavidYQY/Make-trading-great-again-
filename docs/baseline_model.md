@@ -1,6 +1,6 @@
 ---
 title: Baseline model
-nav_include: 5
+nav_include: 2
 ---
 
 ## Contents
@@ -10,7 +10,7 @@ nav_include: 5
 
 ## Introduction
 
-In this section we are going to predict whether the stock market price would increase or not. As a baseline model, we would explore different models and different features.
+In this section we are going to predict whether the stock market price would increase or not. As a baseline, we would explore different models and different features.
 
 Since we were able to obtain minute-by-minute price data of S&P500 index, we can continue our project based on the problem statement, which is to predict stock market price impact based on features extracted from Trump tweets.
 
@@ -48,7 +48,7 @@ We select 20 words based on Volfefe Index[2] by how frequently they appear in ma
 
 We use a 20-dimension one-hot vector to represent whether this tweet has the top-20 signiﬁcant words. 
 
-In the following feature importance part, we would dig deep into the feature importance of each word and to validate the use of use of these 20 words.
+In the following feature importance part, we would dig deep into the feature importance of each word and to validate the use of these 20 words.
 
 ### Sentiment Features 
 
@@ -125,13 +125,16 @@ Below is the result for binary classification (when $\delta = 0$)
 
 ![baseline1](pic/baseline/binary_classification_accuracy.png)
 
-Below is the result for 3 class classification (when $\delta = 1e-4$)
+We can see from the above that:
+
+- When the time gap (x axis) becomes larger, the accuracy of different algorithms becomes greater; when time interval reaches around 40 minutes, the testing accuracy reaches the peak: around 54%. for the random forest and 53.2% for the logistic regressions.
+- For different algorithms, it seems that random forest performs the best and K nearest neighbor performs the worst. It accutually makes little difference between logistic and logistic cv.
+
+Below is the result for 3 class classification (when $\delta = 10^{-4}$)
 
 ![baseline2](pic/baseline/3class_classification_accuracy.png)
 
-## Conclusions
+We can see from the above that:
 
-TODO
-
-
-
+- When the time gap (x axis) becomes larger, the accuracy of different algorithms becomes greater; when time interval reaches around 40 minutes, the testing accuracy coverges. For the random forest, logistic and logistic cv, it reaches around 48%; for the knn model, it reaches around 46.5%
+- For different algorithms, it seems that KNN is obviously the worst; it tells no difference between logistic, logistic cv and random forest.

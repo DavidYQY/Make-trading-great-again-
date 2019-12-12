@@ -62,7 +62,7 @@ Trump has 3 major sources to post his tweets, web, iPhone, and Android. In our d
 
 Based on Figure above, we can see that Trump switched to iPhone after 2017 so that we could no longer use the device to tell the difference between himself and the team. The account's last post from Android was on Mar 25, 2017, 09:41:14 AM, and there are no other Android tweets from then on.
 
-Consensus has that part of Trump's tweets is not written by himself but his team. The problem is that it is hard to tell who is the person behind each tweet. An analysis proposed by David Robinson showed that there was a clear difference between the tweets from Android and iPhone and the Android tweets are angrier and more negative. He concluded that Trump's staff's tweets are from iPhone, and Trump himself uses Android.
+Consensus has that part of Trump's tweets is not written by himself but his team. The problem is that it is hard to tell who is the person behind each tweet. An analysis proposed by David Robinson [11] showed that there was a clear difference between the tweets from Android and iPhone and the Android tweets are angrier and more negative. He concluded that Trump's staff's tweets are from iPhone, and Trump himself uses Android.
 
 <p align="center">
 <img src="pic/eda/difference_ip_ad.jpeg" width="700"/>

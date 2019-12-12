@@ -1,6 +1,6 @@
 ---
 title: Long Short-Term Memory
-nav_include: 2
+nav_include: 4
 ---
 
 ## Contents
@@ -9,6 +9,7 @@ nav_include: 2
 {: toc}
 
 ## Introduction 
+
 
 Automatic text classification can be done in many different ways in machine learning field as we have showed before. We also explore the task using deep learning models.
 
@@ -38,7 +39,7 @@ LSTM has four layters, interacting in a special way as showing in Fig 2. The key
 - Third, update the old cell state $C_{t−1}$ to new state $C_{t}$. LSTM multiply the old state by $f_{t}$ (forgetting the things) and we add $i_{t} * \tilde{C}_{t}$ (the new candidate values).
 - Finally, decide what to output combining with sigmoid and tanh. A sigmoid layer which decides what parts of the cell state to output. Then, the cell state through tanh and multiply it by the output of the sigmoid gate, thus only output the parts we decided to.
 
-## Model Implementation 
+## Implementation 
 
 We use Pytorch to establish our LSTM model and use tensorboard to visualize our training process. 
 
@@ -58,7 +59,7 @@ Different tweets have different length. Thus, we should pad short sentences to t
 </p>
 <center>Fig.4 Sentence padding and get the output in resonable position </center>
 
-### LSTM structure
+### Model structure
 Our main network stucture are as follows:
 First, we do word embedding to get the word representations and then fit them into LSTM units (as we mentioned in Introduction part). We add dropout to alleviate the overfit problem. To fully utilize the information of each tweet, we concatenate the retweet and favorite count as two additional features into the   output from LSTM layer (We compared the results with not concatenating additional features in Abalation study part). Last we use a linear layer to get the output as our predicted label.
 
@@ -95,7 +96,7 @@ We have several hyper-parameters that may influence our training results. Based 
 <center>Tab.1 Important parameters in the model  </center>
 
 
-## Experiment Result
+## Results
 
 ### Ablation study
 
@@ -178,3 +179,6 @@ At first, we compare our model using 5 minute interval after the created time of
 Tab.3 Test accuracy with step for different time intervals.
 
 The loss trends of different intervals seem very similar but the accuracy is a little bit different. That because some interval like 20 minute may better shows the influence of Trump's tweets for the market. When interval is small, market may have no time to response. When interval is large, the change of market may include many noise caused by other aspects.
+
+
+## Conclusion

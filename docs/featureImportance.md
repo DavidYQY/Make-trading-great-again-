@@ -1,6 +1,6 @@
 ---
 title: Feature Importance
-nav_include: 7
+nav_include: 3
 ---
 
 ## Contents

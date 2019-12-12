@@ -10,7 +10,7 @@ nav_include: 2
 
 ## Introduction
 
-In this section we are going to predict whether the stock market price would increase or not. As a baseline model, we would explore different models and different features.
+In this section we are going to predict whether the stock market price would increase or not. As a baseline, we would explore different models and different features.
 
 Since we were able to obtain minute-by-minute price data of S&P500 index, we can continue our project based on the problem statement, which is to predict stock market price impact based on features extracted from Trump tweets.
 
@@ -48,7 +48,7 @@ We select 20 words based on Volfefe Index[2] by how frequently they appear in ma
 
 We use a 20-dimension one-hot vector to represent whether this tweet has the top-20 signiﬁcant words. 
 
-In the following feature importance part, we would dig deep into the feature importance of each word and to validate the use of use of these 20 words.
+In the following feature importance part, we would dig deep into the feature importance of each word and to validate the use of these 20 words.
 
 ### Sentiment Features 
 

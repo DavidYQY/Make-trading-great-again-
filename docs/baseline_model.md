@@ -1,6 +1,6 @@
 ---
 title: Baseline model
-nav_include: 5
+nav_include: 2
 ---
 
 ## Contents

@@ -125,13 +125,16 @@ Below is the result for binary classification (when $\delta = 0$)
 
 ![baseline1](pic/baseline/binary_classification_accuracy.png)
 
-Below is the result for 3 class classification (when $\delta = 1e-4$)
+We can see from the above that:
+
+- When the time gap (x axis) becomes larger, the accuracy of different algorithms becomes greater; when time interval reaches around 40 minutes, the testing accuracy reaches the peak: around 54%. for the random forest and 53.2% for the logistic regressions.
+- For different algorithms, it seems that random forest performs the best and K nearest neighbor performs the worst. It accutually makes little difference between logistic and logistic cv.
+
+Below is the result for 3 class classification (when $\delta = 10^{-4}$)
 
 ![baseline2](pic/baseline/3class_classification_accuracy.png)
 
-## Conclusions
+We can see from the above that:
 
-TODO
-
-
-
+- When the time gap (x axis) becomes larger, the accuracy of different algorithms becomes greater; when time interval reaches around 40 minutes, the testing accuracy coverges. For the random forest, logistic and logistic cv, it reaches around 48%; for the knn model, it reaches around 46.5%
+- For different algorithms, it seems that KNN is obviously the worst; it tells no difference between logistic, logistic cv and random forest.

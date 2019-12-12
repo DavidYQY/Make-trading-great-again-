@@ -18,7 +18,7 @@ Recurrent Neural Networks are good at modeling sequence data, achieving excellen
 In the diagram, a chunk of neural network, $h_{t}$, takes input $x_{t}$ and outputs a value $o_{t}$. A loop allows information to be passed from one step of the network to the next. Actually, $o_{1}, o_{2}, ..., o_{\tau}$ are the output of hidden layers and we will get the final output label from the last hidden layer. 
 
 ![RNN](pic/lstm/rnn.png)
-<center>Fig 1: A clasical RNN structure </center>
+<center>Figure 1: A clasical RNN structure </center>
 
 ### Long Short-Term Memory
 RNN often suffers from the situation when the gap between the relevant information and the needed point is really large. That means RNN is not capable of handling such “long-term dependencies”.
@@ -30,7 +30,7 @@ All RNNs have the form of a chain of repeating modules ($h$ in Fig 1) of neural 
 LSTM has four layters, interacting in a special way as showing in Fig 2. The key idea is the cell state (the horizontal line going through the top of the module). It will remove or add information to the cell state, regulated by gate structuress.
 
 ![lstm](pic/lstm/lstm.jpeg)
-<center>Fig 2: The repeating module in an LSTM </center>
+<center>Figure 2: The repeating module in an LSTM </center>
 
 
 - First, a sigmoid layer called the “forget gate layer” decide what information to throw away from the cell state. 
@@ -48,7 +48,7 @@ The input of lstm model should be a sequence of numerical data. So we should map
 Word embedding is to compute vector representations of words. To better build our model, a pre-trained Google News corpus (3 billion running words) word vector model (3 million 300-dimension English word vectors) was used as our initial vector representation of the word in tweets. These vector weights will also be update at the following training process. We follow the setting of 300 embedding dimension that Google News choosed.
 
 ![word2vec](pic/lstm/word2vec.png)
-<center>Fig 3. word to vector using Google News model.
+<center>Figure 3: word to vector using Google News model.
 </center>
 
 ### Sentence padding
@@ -57,7 +57,7 @@ Different tweets have different length. Thus, we should pad short sentences to t
 <p align="center">
 <img src="pic/lstm/padding.png" width="600"/> 
 </p>
-<center>Fig.4 Sentence padding and get the output in resonable position </center>
+<center>Figure 4: Sentence padding and get the output in resonable position </center>
 
 ### Model structure
 Our main network stucture are as follows:
@@ -72,7 +72,7 @@ where y is the label (1 for up and 0 for down) and p(y) is the predicted probabi
 <p align="center">
 <img src="pic/lstm/model.png" width="600"/> 
 </p>
-<center>Fig.5 Overall network structure </center>
+<center>Figure 5: Overall network structure </center>
 
 ### Important Hyper-parameter
 
@@ -93,7 +93,7 @@ We have several hyper-parameters that may influence our training results. Based 
 | LEARNING_RATE | 0.0003 | Small learning rate makes the model converge slowly but large learning rate may misguide the model |
 | LEARNING_RATE_DECAY| decay 0.8 per 10 epochs | When the model become more close to global minimum, we should decay the learning rate |
 
-<center>Tab.1 Important parameters in the model  </center>
+<center>Table 1: Important parameters in the model  </center>
 
 
 ## Results
@@ -129,7 +129,7 @@ To justify our model, we do ablation study for whether using pre-trained embeddi
     <td class="tg-c3ow">51.38%</td>
   </tr>
 </table>
-Tab.2 Comparison of using pre-trained embeddings and concatenating features.
+Table 2: Comparison of using pre-trained embeddings and concatenating features.
 
 ![acc-1](pic/lstm/accuracy-1.png)
 <center>Fig.6 Test accuracy comparison with training step </center>
@@ -147,7 +147,8 @@ At first, we compare our model using 5 minute interval after the created time of
 ![all](pic/lstm/all.png)
 
 
-<center>Fig.8 Test accuracy and loss with training step for different time intervals </center>
+
+<center>Figure 8: Test accuracy and loss with training step for different time intervals </center>
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -176,7 +177,7 @@ At first, we compare our model using 5 minute interval after the created time of
     <td class="tg-0pky">53.22%</td>
   </tr>
 </table>
-Tab.3 Test accuracy with step for different time intervals.
+Table 3: Test accuracy with step for different time intervals.
 
 The loss trends of different intervals seem very similar but the accuracy is a little bit different. That because some interval like 20 minute may better shows the influence of Trump's tweets for the market. When interval is small, market may have no time to response. When interval is large, the change of market may include many noise caused by other aspects.
 

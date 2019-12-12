@@ -18,7 +18,9 @@ We live in a digital world where social media is ubiquitous. As an example, Twit
 
 In particular, we are interested in studying the relationship between Trump's tweets and S&P500 Index movements. Concretely, does his tweets have any predictive power on where the market is going? This is a challenging problem, not just that there are lots of tweets available, but more importantly, those tweets contain textual information that we have not encountered before.
 
-Thus, our project is split into a few parts. We first conduct EDA to explore the structure of the data. Then we try to predict the *direction* (i.e. up or down) of the market movement through baseline models and Long Short-Term Memory (LSTM) model. We finally briefly look at regression models to predict the actual returns of of the S&P 500 right after the tweet, before concluding with a discussion of possible future work.
+Thus, our project is split into a few parts. We first conduct EDA to explore the structure of the data. Then we try to predict the *direction* (i.e. up or down) of the market movement through baseline models (with a special section dedicated to feature importance) and Long Short-Term Memory (LSTM) model. We finally briefly look at regression models to predict the actual returns of of the S&P 500 right after the tweet, before concluding with a discussion of possible future improvements.
+
+First, some background information about our datasets:
 
 ### Twitter Dataset
 

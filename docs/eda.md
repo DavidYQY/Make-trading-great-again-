@@ -60,9 +60,9 @@ Trump has 3 major sources to post his tweets, web, iPhone, and Android. In our d
 <img src="pic/eda/iphonevsandroid_over_time.jpeg" width="700"/>
 </p>
 
-Based on Figure above, we can see that Trump switches to the iPhone after 2017 so that we could no longer use the device to tell the difference between himself and the team. The account's last post from Android is on Mar 25, 2017, 09:41:14 AM, and there are no other Android tweets from then on.
+Based on Figure above, we can see that Trump switched to iPhone after 2017 so that we could no longer use the device to tell the difference between himself and the team. The account's last post from Android was on Mar 25, 2017, 09:41:14 AM, and there are no other Android tweets from then on.
 
-There is a consensus that part of Trump's tweets is not written by himself but his team. The problem is that we are hard to tell the person behind the tweet. An Analysis proposed by David Robinson showed that there was a clear difference between the tweets from Android and iPhone and the Android tweets are angrier and more negative. He concluded that the campaign’s tweets are from iPhone, and Trump uses Android to tweet.
+Consensus has that part of Trump's tweets is not written by himself but his team. The problem is that it is hard to tell who is the person behind each tweet. An analysis proposed by David Robinson showed that there was a clear difference between the tweets from Android and iPhone and the Android tweets are angrier and more negative. He concluded that Trump's staff's tweets are from iPhone, and Trump himself uses Android.
 
 <p align="center">
 <img src="pic/eda/difference_ip_ad.jpeg" width="700"/>
@@ -92,13 +92,13 @@ From EDA we know that 7.5% of Trump’s tweet are from retweet, which shows that
 
 Above is the word cloud of Trump's most frequently used word, as we can see in the graph, Trump loves to use the word great, thank and trump.
 
-CNN pointed out that Trump commonly made spelling mistakes and he even misspelled his wife's name on Twitter. Hence, we are curious to see what misspellings he made on Twitter in our dataset. In this study, because there is no standard spell checker tool that can achieve satisfactory performance on detecting whether a word is correct, we use a list of common misspellings containing 2239 words from Wikipedia and if Trump's Twitter word matches a misspelling in it.
+CNN pointed out that Trump commonly made spelling mistakes and he even misspelled his wife's name on Twitter. Hence, we are curious to see what misspellings he made on Twitter in our dataset. In this study, because there is no standard spell checker tool that can achieve satisfactory performance on detecting whether a word is correct, we use a list of common misspellings containing 2239 words from Wikipedia and see if Trump's Twitter word matches a misspelling in it.
 
 <p align="center">
 <img src="pic/eda/misspelling.jpeg" width="700"/>
 </p>
 
-The figure above is a word cloud of shows Trump's favorite misspelling, it seems that Trump misspelled 'received' to 'recieved' a lot of time.
+The figure above is a word cloud that shows Trump's favorite misspelling, it seems that Trump misspelled 'received' to 'recieved' a lot times.
 
 
 ### Sentiment Analysis
@@ -147,7 +147,10 @@ It seems that there is no huge difference within a given day, the only differenc
 
 Lastly we want to see if the sentiment of tweets affects the favorite counts and retweet counts:
 
-![Average favorite and retweets counts by sentiment](pic/sentiment/f.png)
+<p align="center">
+<img src="pic/sentiment/f.png" width="700"/>
+</p>
+<center>Average favorite and retweets counts by sentiment</center>
 
 We can tell from figure above that the neutral tweets have the least amount of retweets and favorites, while the negative ones have the most, which makes sense since people tend to comment and watch more controversial topics rather then the milder ones.
 

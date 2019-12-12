@@ -23,10 +23,19 @@ sentenment-analysis.ipynb
 
 - ```preprocess.py``` (with twokenize.py imported): preprocess trump data from trumptwitterarchive.txt to processed_trumptwitterarchive.txt
 - ```CleaningSPXData.ipynb```: clean SNP data and do the eda for the SNP data. 
-- ```lstm folder```: codes to run lstm. To run it:
-```python
+- ```lstm folder```: codes for lstm. 
+	- ```const.py```: Code for setting hyper-parameters
+	- ```utils.py```: Code for tools
+	- ```train.py```: Code for training and evaluating the model
+	- ```model.py```: Code for establishing the model
+	- ```dataset.py```:Code for building dataloaders
+
+To run and train a model:
+```shell
+
 python -m lstm.train
 ```
+
 - ```baseline_model.ipynb```: notebook about the baseline models work.
 - ```baseline_regression```: notebook about the regression work
 - ``exploratory_data_analysis.ipynb```: notebook about the eda work

@@ -62,3 +62,5 @@ Twitter. First Monday, 19(8).
 In Proceedings of the International Conference on Weblogs and Social.
 
 [9] Juma’h, Ahmad H., and Yazan Alnsour. "Using Social Media Analytics: The Effect of President Trump’s Tweets On Companies’ Performance." Journal of Accounting and Management Information Systems 17.1 (2018): 100-121.
+
+[10] Olah, Christopher. "Understanding lstm networks." (2015).

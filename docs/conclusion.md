@@ -37,7 +37,7 @@ For the feature importance section, we obtain top important words from the rando
 
 ### Regression
 
-In our mini adventure into the prediction of actual returns of the S&P500 Index post Trump’s tweets, if we treat the Linear Regression as baseline, Lasso regression and Random Forest indeed outperformed. However, there is zero practical use of the model, since it has 0 R2 value in the test set.
+In our mini adventure into the prediction of actual returns of the S&P500 Index post Trump’s tweets, if we treat the Linear Regression as baseline, Lasso regression and Random Forest indeed outperformed. However, there is zero practical use of the model, since it has 0 $R^2$ value in the test set.
 
 
 

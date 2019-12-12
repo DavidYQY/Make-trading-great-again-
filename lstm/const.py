@@ -8,7 +8,7 @@ _time = time.strftime('%m-%d %H:%M:%S', time.localtime())
 
 # Model Parameter
 MAX_VOCAB_SIZE = 10000
-USE_PRETRAINED_EMBEDDING = True
+USE_PRETRAINED_EMBEDDING = False
 CONCAT_RETWEET_AND_FAV = True
 MAX_SAMPLE_LENGTH = 50
 EMBED_DIM = 300

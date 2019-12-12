@@ -25,7 +25,7 @@ Finally, we attempted to directly predict the *returns* of the S&P500 Index. Not
 
 ### Baseline models
 
-For the baseline classification models, generally speaking when the time interval becomes larger, the classfication accuracy becomes more precise. The potential reason behind this phenomon is that we have included the number of favorites and the number of retweets in the model, which is accumulative with the time. The ultimate (or till now) favorite numbers and retweet numbers can somewhat leak the tweets' influence towards the market and public audience, and thus the long term prediction can become more precise.
+For the baseline classification models, generally speaking when the time interval becomes larger, the classification accuracy becomes more precise. The potential reason behind this phenomon is that we have included the number of favorites and the number of retweets in the model, which is accumulative with the time. The ultimate (or till now) favorite numbers and retweet numbers can somewhat leak the tweets' influence towards the market and public audience, and thus the long term prediction can become more precise.
 
 By adding a third class zero, we relatively improve the accuracy of the classifier. This is practical since many tweets do not have influence on the market at all.
 
@@ -63,11 +63,11 @@ In our mini adventure into the prediction of actual returns of the S&P500 Index 
 <center>Figure 2: Positive and Negative Word Count Before and After Character Limit Change</center>
 <br>
 
-- For deep learning models, there are three things to imprve.
-	- Include hierarchical neural attention branch. Attention let the network focuse more on related words and filtered our useless information. This will help remit the noise which confused the network. Even though we know little of how our human brain learns and remembers sequences, we could draw insights from human attention mechanism, which is widely used in current research fields.
+- For deep learning models, there are three things to improve.
+	- Include hierarchical neural attention branch. Attention let the network focus more on related words and filtered our useless information. This will help remit the noise which confused the network. Even though we know little of how our human brain learns and remembers sequences, we could draw insights from human attention mechanism, which is widely used in current research fields.
 
 	-  Leverage image as a learning bias to reason about language perception. A major difference between human and machine is that humans form a coherent and global understanding of a scene, where high-level knowledge provides resilience in the face of errors from low-level perception. Thus the combination of language and vision provides a prism to text understanding. This will alleviate the information lost of emojis, images or videos.
 
-	-  	Use data augmentation. We could enlarge our datsets via generating more text data to boost up the models. In natural language processing field, it is hard to augmenting text due to high complexity of language. We are thinking about methods, for example, using synonym as substitute or extracting main structure of the sentence. It is difficult to achieve but have high research value for future improvement.
+	-  Use data augmentation. We could enlarge our datsets via generating more text data to boost up the models. In natural language processing field, it is hard to augmenting text due to high complexity of language. We are thinking about methods, for example, using synonym as substitute or extracting main structure of the sentence. It is difficult to achieve but have high research value for future improvement.
 
 - One possible limitation of our research is that, as we discussed before, Trump’s tweets are not always posted by himself. The tweet posted by introducing more noise into the model since some studies showed that the tweet from his team would be less aggressive. One way to overcome this problem is that we could filter out the tweets that not tweeted by him. This is difficult now since Trump switches Android to iPhone nowadays so that we can no longer simply tell the difference between different sources. In the future, we could possibly use the result from http://didtrumptweetit.com/ (which is a website contains the probability the tweet is posted by Trump).

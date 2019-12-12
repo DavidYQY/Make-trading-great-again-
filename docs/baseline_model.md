@@ -10,19 +10,19 @@ nav_include: 2
 
 ## Introduction
 
-In this section we are going to predict whether the stock market price would increase or not. As a baseline, we would explore different models and different features.
+In this section we are going to predict whether the stock market price would go up or down post Trump's tweet. As a baseline, we would explore different models and different features.
 
-Since we were able to obtain minute-by-minute price data of S&P500 index, we can continue our project based on the problem statement, which is to predict stock market price impact based on features extracted from Trump tweets.
+Since we were able to obtain minute-by-minute price data of S&P500 Index, we can continue our project based on the problem statement, which is to predict stock market price impact based on features extracted from Trump tweets.
 
 ## Feature selection
 
 ### Features in tweet
 
-Each tweet has the number of favorite and the number of retweet, which we think are important features to measure the impact of this tweet.
+Each tweet has the number of favorite and the number of retweets, which we think are important features to measure the impact of this tweet.
 
 ### Top Signiﬁcant Words 
 
-We select 20 words based on Volfefe Index[2] by how frequently they appear in marketmoving tweets: 
+We select 20 words based on Volfefe Index [2] by how frequently they appear in market-moving tweets: 
 
 - China
 - billion
@@ -48,7 +48,7 @@ We select 20 words based on Volfefe Index[2] by how frequently they appear in ma
 
 We use a 20-dimension one-hot vector to represent whether this tweet has the top-20 signiﬁcant words. 
 
-In the following feature importance part, we would dig deep into the feature importance of each word and to validate the use of these 20 words.
+In the following feature importance part, we would dig deeper into the feature importance of each word and to validate the use of these 20 words.
 
 ### Sentiment Features 
 
@@ -117,7 +117,7 @@ for the cases where $\delta = 0$, it is a binary classification problem, whose r
 
 ### Experiment
 
-Even if $\delta$ and $m$ are fixed, we have noticed that there is some randomness due to the train test split and model training. To better eliminate this sort of randomness, for each $\delta$ and $m$, we have done 10 times of training and use the average of accuracy on each test set as the final metric.
+Even if $\delta$ and $m$ are fixed, we have noticed that there is some randomness due to the train test split and model training. To better reduce this sort of randomness, for each $\delta$ and $m$, we have done 10 times of training and use the average of accuracy on each test set as the final metric.
 
 ## Results
 

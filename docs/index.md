@@ -12,7 +12,7 @@ The current U.S. President Donald J. Trump is very different from his predecesso
 
 In this study we test this hypothesis by trying to predict both the *direction* and actual *returns* of S&P 500 Index immediately after each tweet.
 
-## Introduction and Description of Data
+## Introduction and Roadmap
 
 We live in a digital world where social media is ubiquitous. As an example, Twitter alone produces, on average, 500 million tweets a day. Individual tweets can have profound effects, particularly the ones coming from politicians. To this end, analyzing those tweets is important and significant.
 
@@ -20,7 +20,7 @@ In particular, we are interested in studying the relationship between Trump's tw
 
 Thus, our project is split into a few parts. We first conduct EDA to explore the structure of the data. Then we try to predict the *direction* (i.e. up or down) of the market movement through baseline models (with a special section dedicated to feature importance) and Long Short-Term Memory (LSTM) model. We finally briefly look at regression models to predict the actual returns of of the S&P 500 right after the tweet, before concluding with a discussion of possible future improvements.
 
-First, some background information about our datasets:
+## Description of Data
 
 ### Twitter Dataset
 

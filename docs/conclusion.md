@@ -10,6 +10,7 @@ nav_include: 7
 
 ## Project Trajectory, Interpretation, and Conclusion
 
+With this project we set out hoping to extract information from Trump's tweets that are related to the movement of the financial market. Specifically, we extracted 20 key words that we think are important. 
 
 
 

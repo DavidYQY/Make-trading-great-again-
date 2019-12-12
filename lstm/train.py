@@ -1,12 +1,12 @@
-from rnn.dataset import Dictionary, MyDataset
-from rnn.model import LSTMClassifier
+from lstm.dataset import Dictionary, MyDataset
+from lstm.model import LSTMClassifier
 import torch
 import torch.utils.data
 from torch import nn
 import numpy as np
 from torch.nn import functional as F
-from rnn import const
-from rnn.utils import parse_args_and_merge_const
+from lstm import const
+from lstm.utils import parse_args_and_merge_const
 from tensorboardX import SummaryWriter
 import time
 import os

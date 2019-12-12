@@ -10,11 +10,10 @@ nav_include: 4
 
 ## Introduction 
 
-
-Automatic text classification can be done in many different ways in machine learning field as we have showed before. We also explore the task using deep learning models.
+Based on our exploration in our baseline models, we find it is difficult to manully extract features with strong expression ability. The selected fetaure may ignore some potential information in the tweets which limited the model performance. Nowadays, deep learning, especially Recurrent Neural Networks (RNN), has achieved excellent performance in text classification. Thus, we further explore this task using RNN to compose low-level lexical features into high-level semantic concepts for the automatic summarization of texts. In this section, we moved our focus from designing features to designing network architectures.
 
 ### Recurrent Neural Networks
-Recurrent Neural Networks (RNN) are good at modeling sequence data, achieving excellent performance in Natural Language Processing field. When humans read sentences, they understand each word based on the understanding of previous words. Traditional neural networks can not handle this but RNN breaks through the limitation.  
+Recurrent Neural Networks are good at modeling sequence data, achieving excellent performance in Natural Language Processing field. When humans read sentences, they understand each word based on the understanding of previous words. Traditional neural networks can not handle this but RNN breaks through the limitation.  
 
 In the diagram, a chunk of neural network, $h_{t}$, takes input $x_{t}$ and outputs a value $o_{t}$. A loop allows information to be passed from one step of the network to the next. Actually, $o_{1}, o_{2}, ..., o_{\tau}$ are the output of hidden layers and we will get the final output label from the last hidden layer. 
 
@@ -45,6 +44,7 @@ We use Pytorch to establish our LSTM model and use tensorboard to visualize our 
 
 The input of lstm model should be a sequence of numerical data. So we should map words to vectors and pad each tweet to same length.
 ### Word embedding
+
 Word embedding is to compute vector representations of words. To better build our model, a pre-trained Google News corpus (3 billion running words) word vector model (3 million 300-dimension English word vectors) was used as our initial vector representation of the word in tweets. These vector weights will also be update at the following training process. We follow the setting of 300 embedding dimension that Google News choosed.
 
 ![word2vec](pic/lstm/word2vec.png)
@@ -182,3 +182,10 @@ The loss trends of different intervals seem very similar but the accuracy is a l
 
 
 ## Conclusion
+
+Compare to baseline model, the LSTM model is slightly better overall. Specifically, when the time interval is shorter than 20 minutes, LSTM model performs better whereas when time interval is longer, the performance goes down because the noise confused the network to make a right choice. 
+
+Why LSTM is not strikingly better than baseline model:
+
+- The size of our dataset is limited. It might have been more than sufficient for vanilla machine learning models but is perhaps not quite enough for deep learning models.
+- Trump's tweets are sometimes much richer than can be represented in our dataset or mapped effectively to numerical values. For example, information such as links and videos was lost in our dataset, and emojis were possibly mapped to values that do not make much sense through word embedding. This way the powerful LSTM model could be confused. However, the abovementioned problem presents a different trade-off situation for our baseline models, which inherent have difficulty processing the lost context and noise.

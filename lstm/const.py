@@ -8,7 +8,7 @@ _time = time.strftime('%m-%d %H:%M:%S', time.localtime())
 
 # Model Parameter
 MAX_VOCAB_SIZE = 10000
-USE_PRETRAINED_EMBEDDING = True
+USE_PRETRAINED_EMBEDDING = False
 CONCAT_RETWEET_AND_FAV = True
 MAX_SAMPLE_LENGTH = 50
 EMBED_DIM = 300
@@ -37,6 +37,6 @@ _name = 'vocab-{}-pretrained-{}-concat-{}-length-{}-emb-{}-hidden-{}-dropout-{:.
 )
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-TRAIN_DIR = 'rnn/models/30/%s/' % _name
+TRAIN_DIR = 'lstm/history/30/%s/' % _name
 MODEL_NAME = '%s' % _name
 #############

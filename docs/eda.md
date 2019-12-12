@@ -8,9 +8,9 @@ nav_include: 1
 *  
 {: toc}
 
-## S&P500 Data
+## S&P500 Index Data
 
-Since we are interested in whether we can use Trump tweets to predict stock market movements (in our baseline model, up or down) in the ﬁrst 5 minutes after each tweet, we specifically look at the up and down percentage within any non-overlapping 5-minute intervals across all data. The result is shown below. Given this, we have a pretty balanced sample, and no need to worry about our classiﬁer predicting only one class.
+Since we are interested in whether we can use Trump's tweets to predict stock market movements (in our baseline model, up or down) in the ﬁrst 5 minutes after each tweet, we specifically look at the up and down percentage within any non-overlapping 5-minute intervals across all data. The result is shown below. Given this, we have a pretty balanced sample, and no need to worry about our classiﬁer predicting only one class.
 
 <table border="1" style="margin: 0px auto;">
   <tr>

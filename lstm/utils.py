@@ -1,7 +1,7 @@
 import torch
 import pandas as pd
 import numpy as np
-from rnn import const
+from lstm import const
 import importlib
 import argparse
 import json
